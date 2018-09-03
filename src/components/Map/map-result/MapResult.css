@@ -1,0 +1,12 @@
+.sf-map-result-container {
+	padding: 10px;
+	min-height: 100px;
+	width: 100%;
+	margin-bottom: 10px;
+	background-color: white;
+}
+
+.sf-map-result-title {
+	font-size: 12pt;
+	font-weight: 600;
+}

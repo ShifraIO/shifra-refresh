@@ -1,0 +1,23 @@
+.sf-map-marker {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-size: 65%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.sf-map-marker.gp {
+	background-color: #6FB2DF;
+	background-image: url('/img/icons8-stethoscope.png');
+}
+
+.sf-map-marker.pharmacy {
+	background-color: #dbd95b;
+	background-image: url('/img/icons8-pill.png');
+}
+
+.sf-map-marker.hospital {
+	background-color: #f3759f;
+	background-image: url('/img/icons8-hospital.png');
+}
