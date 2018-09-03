@@ -51,24 +51,14 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         result.data.allContentfulPage.edges.forEach(edge => {
           const slugPrefix = edge.node.parentMenu.slug;
 
-          //clinic map does not use main template
-          if (slugPrefix !== "clinic-locations") {
-            createPage({
-              path: `${slugPrefix}/${edge.node.slug}`,
-              component: mapPageTemplate,
-              context: {
-                slug: `${edge.node.slug}`,
-              },
-            });
-          } else {
-            createPage({
-              path: `${slugPrefix}/${edge.node.slug}`,
-              component: contentPageTemplate,
-              context: {
-                slug: `${edge.node.slug}`,
-              },
-            });
-          }
+          let pageTemplate = (slugPrefix === "clinic-locations") ? mapPageTemplate : contentPageTemplate;
+          createPage({
+            path: `${slugPrefix}/${edge.node.slug}`,
+            component: pageTemplate,
+            context: {
+              slug: `${edge.node.slug}`,
+            },
+          });
         });
 
         result.data.allContentfulMenuItem.edges.forEach(edge => {
