@@ -188,7 +188,7 @@ class MapContainer extends Component {
 	}
 
 	componentDidMount() {
-		this.props.changeStyle(6);
+		//this.props.changeStyle(6);
 	}
 
 	render() {
@@ -196,23 +196,22 @@ class MapContainer extends Component {
 		var zoomLevel = this.state.zoomLevel
 		var results = this.state.results
 		var services = this.state.services
-		/*console.log(this.state)*/
 
 		this.removeNullMapMarkers();
-
-		/*this.state.mapMarkers.forEach(mkr => {
-			console.log(mkr)
-		})*/
 
 		return (
 			<div className="sf-map-container">
 				<div className="sf-map-sidebar">
 					<form className="sf-map-filters" onSubmit={this.onSubmit}>
-						<input id="sf-map-input-postcode" type="text" placeholder="Postcode or Suburb" onChange={this.onPostcodeChange}/>
-						<input id="sf-map-input-submit" type="submit" value="Search"/>
-						<label><input id="sf-map-input-checkbox" type="checkbox" onChange={this.onServicesChange} data-type="gp" checked={services.gp}/>Doctor</label>
-						<label><input id="sf-map-input-checkbox" type="checkbox" onChange={this.onServicesChange} data-type="pharmacy" checked={services.pharmacy}/>Pharmacy</label>
-						<label><input id="sf-map-input-checkbox" type="checkbox" onChange={this.onServicesChange} data-type="hospital" checked={services.hospital}/>Hospital</label>
+						<div className="sf-input-align">
+							<input id="sf-map-input-postcode" type="text" placeholder="Postcode or Suburb" onChange={this.onPostcodeChange}/>
+							<input id="sf-map-input-submit" type="submit" value="Search"/>
+						</div>
+						<div className="sf-input-checkboxes">
+							<label><input className="sf-map-input-checkbox" type="checkbox" onChange={this.onServicesChange} data-type="gp" checked={services.gp}/>Doctor</label>
+							<label><input className="sf-map-input-checkbox" type="checkbox" onChange={this.onServicesChange} data-type="pharmacy" checked={services.pharmacy}/>Pharmacy</label>
+							<label><input className="sf-map-input-checkbox" type="checkbox" onChange={this.onServicesChange} data-type="hospital" checked={services.hospital}/>Hospital</label>
+						</div>
 					</form>
 					<div className="sf-map-results">
 						{results && results.map((result, idx) => {
