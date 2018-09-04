@@ -9,15 +9,15 @@
 
 .sf-map-marker.gp {
 	background-color: #6FB2DF;
-	background-image: url('/img/icons8-stethoscope.png');
+	background-image: url('../../../content/icons8-stethoscope.png');
 }
 
 .sf-map-marker.pharmacy {
 	background-color: #dbd95b;
-	background-image: url('/img/icons8-pill.png');
+	background-image: url('../../../content/icons8-pill.png');
 }
 
 .sf-map-marker.hospital {
 	background-color: #f3759f;
-	background-image: url('/img/icons8-hospital.png');
+	background-image: url('../../../content/icons8-hospital.png');
 }

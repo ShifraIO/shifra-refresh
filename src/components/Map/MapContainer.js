@@ -54,7 +54,7 @@ class MapContainer extends Component {
 	getResults(e) {
 		if (e.key === 'Enter') {
 			const postcode = e.target.value
-			this.makeSearchRequest(postcode)
+			this.makeSearchRequest(postcode);
 		}
 	}
 
@@ -89,10 +89,12 @@ class MapContainer extends Component {
 	onSubmit(e) {
 		e.preventDefault()
 		const postcode = this.state.postcode
+
 		// Clear current results
 		this.setState({
 			results: []
 		})
+
 		Object.keys(this.state.services).forEach(service => {
 			if (this.state.services[service]) this.makeSearchRequest(postcode, service)
 		})
@@ -104,10 +106,10 @@ class MapContainer extends Component {
 	}
 
 	onMarkerClick(idx) {
-		/*console.log(`onMarkerClick ${idx}`)*/
 		this.state.resultContainers.forEach(cont => {
 			if (cont && typeof cont.close === 'function') cont.close()
 		})
+	
 		this.state.resultContainers[idx].open(true)
 
 		this.state.mapMarkers.forEach(marker => {
@@ -117,7 +119,6 @@ class MapContainer extends Component {
 	}
 
 	onResItemClick(idx) {
-		console.log(`onResItemClick ${idx}`)
 		this.state.mapMarkers.forEach(marker => {
 			if (marker && typeof marker.close === 'function') marker.close()
 		})
@@ -129,7 +130,7 @@ class MapContainer extends Component {
 		this.state.resultContainers[idx].open(false)
 
 		const data = this.state.resultContainers[idx].getData()
-		console.log(data.location.point)
+		
 		this.setState({
 			coords: {
 				lat: data.location.point.lat,
@@ -154,6 +155,7 @@ class MapContainer extends Component {
 				password: 'WIJOQPFWUOTPBRIPJYTYUFOBRWLUSZQY'
 			}
 		}
+
 		axios(config)
 			.then(res => {
 				res.data.objects && this.setState(prevState => {
@@ -170,19 +172,21 @@ class MapContainer extends Component {
 						zoomLevel: 12
 					}
 				})
+			}).catch(error => {
+				console.log(error);
 			})
 	}
 
 	//for some reason, some results are nullified, temp fix this issue
 	removeNullMapMarkers() {
-		let max = this.state.mapMarkers.length;
+		let max = this.state.results.length;
 		let thisMkr = null;
+
 		for (let i = 0; i < max; i++) {
-			thisMkr = this.state.mapMarkers[i];
-			console.log(thisMkr);
-			if (!thisMkr) {
-				this.state.mapMarkers.splice(i, 1);
-				//--i;
+			thisMkr = this.state.results[i];
+
+			if (thisMkr === null || thisMkr === undefined) {			
+				this.state.results.splice(i,1);
 			}
 		}
 	}
@@ -196,8 +200,6 @@ class MapContainer extends Component {
 		var zoomLevel = this.state.zoomLevel
 		var results = this.state.results
 		var services = this.state.services
-
-		this.removeNullMapMarkers();
 
 		return (
 			<div className="sf-map-container">

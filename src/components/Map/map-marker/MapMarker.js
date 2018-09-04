@@ -11,7 +11,6 @@ class MapMarker extends Component {
 		}
 	}
 	open() {
-		console.log('MapMarker.open()')
 		this.setState({
 			style: {
 				border: '5px dashed red'
@@ -20,7 +19,6 @@ class MapMarker extends Component {
 	}
 
 	close() {
-		console.log('MapMarker.close()')
 		this.setState({
 			style: {
 				border: 'none'
