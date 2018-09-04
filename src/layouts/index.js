@@ -74,7 +74,7 @@ export default TemplateWrapper;
 
 export const query = graphql`
   query MenuQuery {
-    allContentfulMenuItem {
+    allContentfulMenuItem(sort: { fields: [menuOrder] }) {
       edges {
         node {
           slug
