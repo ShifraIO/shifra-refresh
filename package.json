@@ -5,6 +5,7 @@
   "author": "Gianni Valdambrini",
   "dependencies": {
     "autoprefixer": "^8.2.0",
+    "axios": "^0.18.0",
     "bulma": "^0.7.1",
     "dotenv": "^6.0.0",
     "emotion": "^9.2.6",
@@ -15,6 +16,7 @@
     "gatsby-plugin-react-helmet": "^2.0.8",
     "gatsby-source-contentful": "^1.3.54",
     "gatsby-transformer-remark": "^1.7.42",
+    "google-map-react": "^1.0.6",
     "react-helmet": "^5.2.0"
   },
   "keywords": [

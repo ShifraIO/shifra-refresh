@@ -1,0 +1,80 @@
+
+
+.sf-map-container {
+	padding-top: 2%;
+	width: 100%;
+	height: 70vh;
+	display: flex;
+	flex-direction: row;
+}
+
+.sf-map-sidebar {
+	left: 0;
+	width: 40%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.sf-map-view {
+	right: 0;
+	width: 60%;
+	height: 100%;
+}
+
+.sf-input-checkboxes label {
+	padding-left: 10px;
+	padding-top: 5px;
+}
+
+.sf-map-input-checkbox {
+	padding-left: 5px;
+}
+
+@media screen and (max-width: 600px) {
+	.sf-map-container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.sf-map-sidebar {
+		top: 0;
+		width: 100%;
+		height: 30%;
+	}
+	
+	.sf-map-view {
+		width: 100%;
+		height: 70%;
+		background-color: purple;
+	}
+}
+
+#sf-map-input-postcode {
+	padding: 10px;
+	align-self: center;
+	height: 40px;
+	width: 55%
+}
+
+.sf-map-results {
+	overflow-y: scroll;
+	width: 100%;
+	margin-top: 20px;
+}
+
+#sf-map-input-submit {
+  padding: 6px;
+  color: white;
+  float: right;
+  background-color: #2f444e;
+  font-size: 1.5rem;
+	border: none;
+	width: 40%;
+}
+
+#sf-map-input-submit:disabled {
+  opacity: 0.3;
+}

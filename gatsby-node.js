@@ -13,6 +13,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     const contentPageTemplate = path.resolve('src/templates/contentPage.js');
     const menuPageTemplate = path.resolve('src/templates/menuPage.js');
+    const mapPageTemplate = path.resolve('src/components/Map/MapContainer.js');
+
     resolve(
       graphql(`
         {
@@ -48,9 +50,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
         result.data.allContentfulPage.edges.forEach(edge => {
           const slugPrefix = edge.node.parentMenu.slug;
+
+          let pageTemplate = (slugPrefix === "clinic-locations") ? mapPageTemplate : contentPageTemplate;
           createPage({
             path: `${slugPrefix}/${edge.node.slug}`,
-            component: contentPageTemplate,
+            component: pageTemplate,
             context: {
               slug: `${edge.node.slug}`,
             },
