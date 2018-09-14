@@ -101,11 +101,6 @@ export const query = graphql`
               }
             }
           }
-          themePalette {
-            primary
-            secondary
-            background
-          }
         }
       }
     }
