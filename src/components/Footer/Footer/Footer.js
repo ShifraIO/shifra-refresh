@@ -40,11 +40,6 @@ const disclaimerClass = cx(
   `
 );
 
-const imageResize = css`
-  width: 90%;
-  height: auto;
-`;
-
 class Footer extends Component {
   constructor(props) {
     super(props);
@@ -109,28 +104,16 @@ class Footer extends Component {
           <div className="section has-text-centered">
             <div className="columns">
               <div className="column is-2">
-                <img
-                  className={imageResize}
-                  src={swinburneLogo}
-                  alt="Swinburne Logo"
-                />
+                <img src={swinburneLogo} alt="Swinburne Logo" />
               </div>
               <div className="column is-2">
-                <img className={imageResize} src={ygapLogo} alt="YGAP Logo" />
+                <img src={ygapLogo} alt="YGAP Logo" />
               </div>
               <div className="column is-2">
-                <img
-                  className={imageResize}
-                  src={monashLogo}
-                  alt="Monash Logo"
-                />
+                <img src={monashLogo} alt="Monash Logo" />
               </div>
               <div className="column">
-                <img
-                  className={imageResize}
-                  src={gcgLogo}
-                  alt="Global Consulting Group Logo"
-                />
+                <img src={gcgLogo} alt="Global Consulting Group Logo" />
               </div>
             </div>
           </div>
