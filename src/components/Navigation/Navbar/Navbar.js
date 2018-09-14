@@ -124,8 +124,18 @@ class Navbar extends Component {
 
   getTheme() {
     switch (this.state.theme) {
+      case 'healthcare-australia':
+        return 'healthcare';
+      case 'family-planning':
+        return 'family';
+      case 'pregnancy-newborn':
+        return 'pregnancy';
       case 'sexual-health':
         return 'sexual';
+      case 'community-health':
+        return 'community';
+      case 'clinic-locations':
+        return 'clinic';
       default:
         return 'healthcare';
     }
