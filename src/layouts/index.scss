@@ -1,1 +1,19 @@
-@import "~bulma/bulma"
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+$white: #fff;
+
+// Themes
+$custom-colors: (
+  'healthcare': (#a9d192, $white),
+  'family': (#86d3ec, $white),
+  'pregnancy': (#ee7b83, $white),
+  'sexual': (#fdb83d, $white),
+  'community': (#aeaacf, $white),
+  'clinic': (#a9d192, $white)
+);
+
+// Fonts
+$family-sans-serif: 'Nunito', sans-serif;
+
+@import '~bulma/bulma';

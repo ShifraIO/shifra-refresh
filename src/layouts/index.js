@@ -15,6 +15,7 @@ class TemplateWrapper extends Component {
     };
 
     this.getFontDirection = this.getFontDirection.bind(this);
+    this.getThemeStringFromUrl = this.getThemeStringFromUrl.bind(this);
   }
 
   componentWillMount() {
@@ -32,6 +33,12 @@ class TemplateWrapper extends Component {
     return 'ltr';
   }
 
+  getThemeStringFromUrl() {
+    const location = this.props.location.pathname;
+    const locationArray = location.split('/');
+    return locationArray[1];
+  }
+
   render() {
     return (
       <div>
@@ -45,6 +52,7 @@ class TemplateWrapper extends Component {
         <Header
           allContentfulMenuItem={this.props.data.allContentfulMenuItem}
           language={this.state.language}
+          theme={this.getThemeStringFromUrl()}
           search={this.state.search}
         />
         <div

@@ -16,13 +16,7 @@ function mapMenuToState(menuData) {
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isMenuOpen: false,
-      menuList: [],
-      language: 'en', // need to set from props passed from root?
-      defaultLanguage: 'en',
-      search: '',
-    };
+    this.state = {};
 
     this.toggleMenu = this.toggleMenu.bind(this);
     this.mapMenuToNavbar = this.mapMenuToNavbar.bind(this);
@@ -32,6 +26,7 @@ class Navbar extends Component {
     this.isContentAvaliableInLanguage = this.isContentAvaliableInLanguage.bind(
       this
     );
+    this.getTheme = this.getTheme.bind(this);
   }
 
   componentWillMount() {
@@ -41,7 +36,12 @@ class Navbar extends Component {
       language: this.props.language,
       defaultLanguage: 'en',
       search: this.props.search,
+      theme: this.props.theme,
     });
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState(Object.assign(this.state, { theme: props.theme }));
   }
 
   toggleMenu() {
@@ -122,10 +122,29 @@ class Navbar extends Component {
     });
   }
 
+  getTheme() {
+    switch (this.state.theme) {
+      case 'healthcare-australia':
+        return 'healthcare';
+      case 'family-planning':
+        return 'family';
+      case 'pregnancy-newborn':
+        return 'pregnancy';
+      case 'sexual-health':
+        return 'sexual';
+      case 'community-health':
+        return 'community';
+      case 'clinic-locations':
+        return 'clinic';
+      default:
+        return 'healthcare';
+    }
+  }
+
   render() {
     return (
       <nav
-        className="navbar is-fixed-top is-info"
+        className={`navbar is-fixed-top is-${this.getTheme()}`}
         role="navigation"
         aria-label="main navigation"
       >
@@ -161,6 +180,7 @@ Navbar.propTypes = {
   menuData: PropTypes.object,
   language: PropTypes.string,
   search: PropTypes.string,
+  theme: PropTypes.string,
 };
 
 export default Navbar;
