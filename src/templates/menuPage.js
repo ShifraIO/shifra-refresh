@@ -26,7 +26,8 @@ class MenuPage extends Component {
       menuName: '',
       menuSlug: '',
       pageList: [],
-      language: 'en'
+      language: 'ar',
+      defaultLanguage: 'en'
     };
 
     this.mapPageListDataToElem = this.mapPageListDataToElem.bind(this);
@@ -42,14 +43,20 @@ class MenuPage extends Component {
     });
   }
 
-  getCardTitleForLanguage(card, language) {
-    card.forEach( card => {
-      if (card.language.code === language)
-        return card.titleText;
+  //take a list of page titles and a target language, 
+  //return the card title in appropriate language or default to default lang
+  getCardTitleForLanguage(cardList, language) {
+    let cardTitle = null;
+
+    cardList.forEach( card => {
+      if (card.language.code === language) 
+        cardTitle = card.titleText;
     });
 
-    //else revert to default
-    return card[0].titleText;
+    if (!cardTitle)
+      return this.getCardTitleForLanguage(cardList, this.state.defaultLanguage);
+    
+    return cardTitle;
   }
 
   mapPageListDataToElem() {
@@ -83,8 +90,7 @@ class MenuPage extends Component {
   pageItemToCard(page) {
     const url = `/${this.state.menuSlug}/${page.slug}`;
 
-    //todo: user language choice
-    const title = this.getCardTitleForLanguage(page.titleList, "en");
+    const title = this.getCardTitleForLanguage(page.titleList, this.state.language);
 
     return (
       <div className="content">
