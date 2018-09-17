@@ -1,132 +1,37 @@
 import React from 'react';
+import beccahImage from "../content/beccah.jpg";
+import taruniImage from "../content/taruni.jpg";
+import hannahImage from "../content/hannah.jpg";
+import aileenImage from "../content/aileen.jpg";
 
 const AboutPage = props => {
   return (
     <div className="section">
       <div className="content">
         <h1>About Us</h1>
-        <h3>Shifra has been designed to:</h3>
-        <p>
-          <ul>
-            <li>
-              Help you access culturally sensitive sexual and reproductive
-              health information in your language.
-            </li>
-            <li>
-              Help you find respectful sexual and reproductive health services
-              that specialise in migrant and refugee health.
-            </li>
-            <li>
-              Gather and analyse data on communities' needs to help improve
-              local health service delivery.
-            </li>
-          </ul>
-        </p>
-        <h3>
-          Shifra is new and we are currently available in English and Arabic.
-          Soon we will be operating in
-        </h3>
-        <p>
-          <ul>
-            <li>Tamil</li>
-            <li>Burmese (Karen)</li>
-            <li>Persian (Farsi and Dari)</li>
-            <li>Vietnamese and Chinese (Mandarin)</li>
-            <li>Dinka</li>
-            <li>Urdu</li>
-          </ul>
-        </p>
-        <p>
-          <span>
-            The information we provide can also be helpful to anyone trying to
-            navigate the Australian health system in English.
-          </span>
-          <br />
-          <span>
-            Shifra is a grassroots organisation. We have much more to add and
-            are working hard on improving.
-          </span>
-          <br />
-          <span>
-            <a href={'mailto:info@shifra.io'}>Feedback</a> is always welcome and
-            we'd love to hear from you if you'd like to{' '}
-            <a href={'mailto:info@shifra.io'}>volunteer</a>
-            to make Shifra more accessible and helpful to everyone.
-          </span>
-          <br />
-          <span>
-            We believe access to quality, respectful health care, in a language
-            you understand is a basic human right.
-          </span>
-          <br />
-          <span>
-            Shifra will one day be available in every language and in every
-            country. Your help will get us there!
-          </span>
-        </p>
-        <h3>
-          Shifra shares health knowledge in a language that is easy to
-          understand and in a way which is respectful for all.
-        </h3>
-        <p>
-          <ul>
-            <li>
-              We believe that respectful health knowledge should be accessible
-              to all women, in every language.
-            </li>
-            <li>
-              We recognise that migrants and refugees have unique and varied
-              barriers to accessing quality reproductive health care within
-              their host communities.
-            </li>
-            <li>
-              We acknowledge that they are the best people to determine what
-              these barriers are and how best to overcome them. Our focus is on
-              enabling women and girls with knowledge to make their own
-              decisions about their own health care options.
-            </li>
-          </ul>
-        </p>
-        <p>
-          <h3>
-            Shifra uses mobile technology and data analytics to increase access
-            to quality reproductive health for Australia’s new migrants and
-            refugees.
-          </h3>
-          <ul>
-            <li>
-              We work with all stakeholders to co-design each and every version
-              of Shifra to ensure it fits that particular community.
-            </li>
-            <li>
-              We develop the local capacity of communities so they are the ones
-              maintaining and improving Shifra long term.
-            </li>
-            <li>
-              We integrate evaluation tools into our implementation design to
-              ensure we are measuring impact from the start.
-            </li>
-          </ul>
-        </p>
-        <hr/>
-        <p>
-          <p>We believe that for girls to count, they need to be counted!</p>
-          <p>
-            We are working towards improving reproductive health access for the
-            millions of women and girls around the world who currently lack it.
-          </p>
-          <p>
-            We want you to join the the Shifra movement and help us get there
-            sooner. Please <a href={'mailto:info@shifra.io'}>contact us</a> now
-            to find out how.
-          </p>
-          <img
-            src={'/img/mAdapt-team.jpg'}
-            alt={'Shifra Launch Party'}
-          />
-          <p>Shifra’s Designers, Developers and Researchers</p>
-          <p>Launch Party , 2 August 2017</p>
-        </p>
+        <b>What We Do</b><br/>
+		<p>We provide evidence-based and respectful health knowledge and we make it accessible in every language.</p>
+		<b>Our Mission</b>
+		<p>We develop partnerships and products that help make sexual and reproductive healthcare more accessible and equitable for refugees and new migrants.</p>
+		<b>Our Vision</b>
+		<p>Shifra knows that a world where every person has access to sexual and reproductive health services is possible. We are working towards ensuring that healthcare is high quality, respectful and available in a language that anyone can understand.</p>
+		<center><h3><b><u>Our Team</u></b></h3></center>
+		<p><img width="15%" src={beccahImage} alt="Beccah Bartlett" /><b> Founder:</b> Beccah Bartlett</p>
+		<p>Passionate about reducing health disparities in underserved communities and promoting respectful maternity care, Beccah is a Registered Nurse-Midwife, a PhD candidate at Monash University and the founder of Shifra.</p>
+		<p>Beccah is a vegetarian and her Instagram feed is full of special needs cates and pictures of flowers. She loves earl grey tea and believes sexual and reproductive health is a right not a privilege.</p>
+		<hr/>
+		<p><img width="15%" src={taruniImage} alt="Taruni Roy Khurana" /><b> Chief Operating Officer:</b> Taruni Roy Khurana</p>
+		<p>A neuroscientist by training and an aspiring public health professional, Taruni is passionate about data driven decision making and leveraging her scientific background to drive impact. She is a strong advocate of enabling health equity across gender, nationality and class lines. At Shifra, Taruni is responsible for strategy, operations and business development. She rolls up her sleeves and does whatever requires doing at Shifra!</p>
+		<p>When not glued to her Kindle, she is an avid zentangler, an enthusiastic board games geek and a spirited ultimate Frisbee player. Taruni is a nomad at heart and she combines her loves for travel with sampling local cuisine.</p>
+		<hr/>
+		<p><img width="15%" src={hannahImage} alt="Hannah Rackers" /><b> Research and Evaluation:</b> Hannah Rackers</p>
+		<p>Hannah specialises in health equity, access to care and maternal mental health. She is a Research Instructor at University of North Carolina-Chapel Hill and a Project Manager for maternal mental health grants. Its Shifras commitment to community involvement that Hannah believes in most. She believes more interventions should employ user-designed development to ensure their interventions are as useful and amenable to their intended populations as possible.</p>
+		<p>Hannah admits to playing an embarrassing amount of Fortnite recently and came to work with Shifra because access to care and health information is essential for fostering personal agency especially for people in a new place or learning a new language.</p>
+		<hr/>
+		<p><img width="15%" src={aileenImage} alt="Aileen Aylward" /><b> Feasibility and Scaling:</b> Aileen Aylward</p>
+		<p>Aileens public health focus is on improving equitable access to health care, refugee rights and wellbeing and language education. Currently Aileen teaches English as a second language and is developing English-language educational materials in Germany where she has been based since mid 2017. Aileen runs marathons (for fun!) and has a dog named Jasper. She is also a great cook and is always on the hunt for the perfect brownie recipe.</p>
+		<p>Aileen joined Shifra because she recognises that quality reproductive health care is essential and navigating the reproductive health care landscape in a new place is daunting and loves the idea of a community-designed tool that makes this easier.</p>
+		<hr/>
       </div>
     </div>
   );
