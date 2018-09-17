@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { cx, css } from 'emotion';
+import swinburneLogo from '../../../content/contributors/swinburne.png';
+import ygapLogo from '../../../content/contributors/ygap.png';
+import monashLogo from '../../../content/contributors/monash.png';
+import gcgLogo from '../../../content/contributors/gcgmonash.png';
 
 const footerWrapperClass = cx('footer', css``);
 
@@ -96,7 +100,23 @@ class Footer extends Component {
               <i className="fab fa-instagram" />
             </a>
           </div>
-          <div className="content has-text-centered">[Partners Go Here]</div>
+
+          <div className="section has-text-centered">
+            <div className="columns">
+              <div className="column is-2">
+                <img src={swinburneLogo} alt="Swinburne Logo" />
+              </div>
+              <div className="column is-2">
+                <img src={ygapLogo} alt="YGAP Logo" />
+              </div>
+              <div className="column is-2">
+                <img src={monashLogo} alt="Monash Logo" />
+              </div>
+              <div className="column">
+                <img src={gcgLogo} alt="Global Consulting Group Logo" />
+              </div>
+            </div>
+          </div>
         </div>
         <div className={disclaimerClass}>
           <p>© 2017 Shifra. All rights reserved.</p>
