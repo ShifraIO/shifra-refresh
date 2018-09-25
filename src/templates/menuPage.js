@@ -26,12 +26,13 @@ class MenuPage extends Component {
       menuName: '',
       menuSlug: '',
       pageList: [],
-      language: 'en'
+      language: "en"
     };
 
     this.mapPageListDataToElem = this.mapPageListDataToElem.bind(this);
     this.getCardTitleForLanguage = this.getCardTitleForLanguage.bind(this);
     this.pageItemToCard = this.pageItemToCard.bind(this);
+    this.themePaletteToCss = this.themePaletteToCss.bind(this);
   }
 
   componentWillMount() {
@@ -39,19 +40,40 @@ class MenuPage extends Component {
       menuName: this.props.data.contentfulMenuItem.title,
       menuSlug: this.props.data.contentfulMenuItem.slug,
       pageList: this.props.data.contentfulMenuItem.pageList || [],
+      themePalette: this.themePaletteToCss(this.props.data.contentfulMenuItem.themePalette)
     });
   }
 
-  getCardTitleForLanguage(card, language) {
-    card.forEach( card => {
-      if (card.language.code === language)
-        return card.titleText;
-    });
+  //take a theme palette object (from contentful), convert to relevent css classes
+  themePaletteToCss(themePalette) {
+    return {
+      text: css`
+        color: ${themePalette.background};
+        font-weight: normal;
 
-    //else revert to default
-    return card[0].titleText;
+        &:hover {
+          color: ${themePalette.background};
+        }`,
+
+      background: css`background-color: ${themePalette.primary};`,
+      cardParentContainerHover: css``
+    }
   }
 
+  //given a titlelist, return the title in chosen language, else default to en
+  getCardTitleForLanguage(titleList, language) {
+    //default on the first title, english
+    let chosenTitle = titleList[0].titleText;
+
+    titleList.forEach( title => {
+      if (title.language.code === language)
+         chosenTitle = title.titleText;
+    });
+
+    return chosenTitle;
+  }
+
+  //using the page list, create the grid of cards
   mapPageListDataToElem() {
     let row = [], 
     pageListGrid = [],
@@ -80,17 +102,16 @@ class MenuPage extends Component {
     return pageListGrid;
   }
 
+  //generate a card from a page
   pageItemToCard(page) {
     const url = `/${this.state.menuSlug}/${page.slug}`;
-
-    //todo: user language choice
-    const title = this.getCardTitleForLanguage(page.titleList, "en");
+    const title = this.getCardTitleForLanguage(page.titleList, this.state.language);
 
     return (
-      <div className="content">
-        <div className={`card ${cardSize}`}>
+      <div className={`content ${this.state.themePalette.cardParentContainerHover}`}>
+        <div className={`card ${cardSize} ${this.state.themePalette.background}`}>
           <div className={`card-content ${cardTitleText} ${vertCentred}`}>
-              <Link className={`title`} to={url}>
+              <Link className={`title ${this.state.themePalette.text}`} to={url}>
                 {title}
               </Link>
           </div>
@@ -118,9 +139,11 @@ export const pageQuery = graphql`
   query menuItemContentQuery($slug: String!) {
     contentfulMenuItem(slug: { eq: $slug }) {
       slug
+
       menuItemTextList {
         menuItemText
       }
+
       pageList {
         slug
         titleList {
@@ -129,6 +152,12 @@ export const pageQuery = graphql`
             code
           }
         }
+      }
+
+      themePalette { 
+        primary
+        secondary
+        background
       }
     }
   }
