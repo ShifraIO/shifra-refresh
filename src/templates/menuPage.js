@@ -10,7 +10,7 @@ const cardSize = css`
     display: flex;
     align-items: center;
 
-    min-height: 200px;
+    min-height: 215px;
     @media (max-width: 768px) {
       min-height: 100px;
     }
