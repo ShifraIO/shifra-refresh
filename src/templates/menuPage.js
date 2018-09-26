@@ -18,6 +18,11 @@ const cardSize = css`
 
 const cardTitleText = css`display: flex; text-align: center;`;
 
+const menuIcon = css`
+    max-width: 50px;
+    max-height: 50px;
+`;
+
 class MenuPage extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +38,7 @@ class MenuPage extends Component {
     this.getCardTitleForLanguage = this.getCardTitleForLanguage.bind(this);
     this.pageItemToCard = this.pageItemToCard.bind(this);
     this.themePaletteToCss = this.themePaletteToCss.bind(this);
+    this.getIconForPage = this.getIconForPage.bind(this);
   }
 
   componentWillMount() {
@@ -112,12 +118,32 @@ class MenuPage extends Component {
         <div className={`card ${cardSize} ${this.state.themePalette.background}`}>
           <div className={`card-content ${cardTitleText} ${vertCentred}`}>
               <Link className={`title ${this.state.themePalette.text}`} to={url}>
+                {this.getIconForPage(page)}
+                <br/>
                 {title}
               </Link>
           </div>
         </div>
       </div>
     )
+  }
+
+  //given a page and menu title, load the relevent icon
+  getIconForPage(page) {
+    let imgImp = "#";
+
+    //try to get the image
+    try {
+      imgImp = require(`../content/icons/${this.state.menuSlug}/${page.slug}.png`);
+    } catch (e){
+      console.log("file " + `/src/content/icons/${this.state.menuSlug}/${page.slug}.png does not exist` ); 
+    };
+
+    return (
+      <span>
+        <img src={imgImp} className={menuIcon}/>
+      </span>
+    );
   }
 
   render() {
