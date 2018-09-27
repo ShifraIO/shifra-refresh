@@ -8,7 +8,6 @@ import NavbarEnd from '../NavbarEnd';
 import NavbarDropdown from '../NavbarDropdown';
 import NavbarItem from '../NavbarItem';
 import PropTypes from 'prop-types';
-import mapIcon from '../../../content/icons/extraicons/findahealthservice.png';
 
 function mapMenuToState(menuData) {
   return menuData.edges.map(data => data.node);
