@@ -22,8 +22,6 @@ class MenuPage extends Component {
   constructor(props) {
     super(props);
 
-    console.log(this.props)
-
     this.state = {
       menuName: '',
       menuSlug: '',
@@ -37,7 +35,6 @@ class MenuPage extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props)
     this.setState({
       menuName: this.props.data.contentfulMenuItem.title,
       menuSlug: this.props.data.contentfulMenuItem.slug,

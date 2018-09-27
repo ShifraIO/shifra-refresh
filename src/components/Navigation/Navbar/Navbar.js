@@ -8,6 +8,7 @@ import NavbarEnd from '../NavbarEnd';
 import NavbarDropdown from '../NavbarDropdown';
 import NavbarItem from '../NavbarItem';
 import PropTypes from 'prop-types';
+import mapIcon from '../../../content/icons/extraicons/findahealthservice.png';
 
 function mapMenuToState(menuData) {
   return menuData.edges.map(data => data.node);
@@ -157,12 +158,8 @@ class Navbar extends Component {
         <NavbarMenu isOpen={this.state.isMenuOpen}>
           <NavbarStart>{this.mapMenuToNavbar(this.state.menuList)}</NavbarStart>
           <NavbarEnd>
-            <NavbarItem
-              to={`/about${this.state.search}`}
-              iconClass="fas fa-info"
-            >
-              About
-            </NavbarItem>
+            <NavbarItem to={`/clinic-locations${this.state.search}`} iconClass="fas fa-map-marker">Clinic Locations</NavbarItem>
+            <NavbarItem to={`/about${this.state.search}`} iconClass="fas fa-info">About</NavbarItem>
             <a href={'mailto:info@shifra.io'} className="navbar-item">
               <span className="icon">
                 <i className={'fas fa-envelope'} />
