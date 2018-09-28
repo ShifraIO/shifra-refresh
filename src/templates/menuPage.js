@@ -88,8 +88,8 @@ class MenuPage extends Component {
 
     return (
       <div className="content card-background">
-        <div className={`card card-size card-background has-background-${this.state.themeName}`}>
-          <div className="card-content card-title-text vert-centered">
+        <div className={`card card-size has-background-${this.state.themeName}`}>
+          <div className="card-content card-title-text">
               <Link className="title has-text-white-bis has-text-weight-light" to={url}>
                 {this.getIconForPage(page)}
                 <br/>
