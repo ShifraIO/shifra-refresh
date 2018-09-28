@@ -1,0 +1,30 @@
+
+$minCardWidth: 215px;
+
+.vert-centred {
+	margin: 0 auto;
+}
+
+.card-size {
+    display: flex;
+    align-items: center;
+
+    min-height: 215px;
+    @media (max-width: 768px) {
+      min-height: 100px;
+    }
+}
+
+.card-title-text {
+	display: flex; 
+	text-align: center;
+}
+
+.menu-icon {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.page-card-text {
+	font-weight: normal;
+}
