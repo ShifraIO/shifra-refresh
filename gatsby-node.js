@@ -49,9 +49,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
         result.data.allContentfulPage.edges.forEach(edge => {
           const slugPrefix = edge.node.parentMenu.slug;
-
           createPage({
-            path: `${slugPrefix}/${edge.node.slug}`,
+            path: `/${slugPrefix}/${edge.node.slug}`,
             component: contentPageTemplate,
             context: {
               slug: `${edge.node.slug}`,
@@ -61,7 +60,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
         result.data.allContentfulMenuItem.edges.forEach(edge => {
           createPage({
-            path: `${edge.node.slug}`,
+            path: `/${edge.node.slug}`,
             component: menuPageTemplate,
             context: {
               slug: `${edge.node.slug}`,
