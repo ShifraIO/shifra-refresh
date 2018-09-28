@@ -41,7 +41,7 @@ class TemplateWrapper extends Component {
 
   render() {
     return (
-      <div>
+      <div className="fix">
         <Helmet
           title="Gatsby Starter Bulma Storybook"
           meta={[
@@ -55,18 +55,19 @@ class TemplateWrapper extends Component {
           theme={this.getThemeStringFromUrl()}
           search={this.state.search}
         />
-        <div
-          style={{
-            margin: '0 auto',
-            maxWidth: 960,
-            padding: '0px 1.0875rem 1.45rem',
-            paddingTop: 0,
-          }}
+        <div className='stretch-fix'
+          // style={{
+          //   margin: '0 auto',
+          //   maxWidth: 960,
+          //   padding: '0px 1.0875rem 1.45rem',
+          //   paddingTop: 0,
+          // }}
+
           dir={this.getFontDirection(this.state.language)}
         >
           {this.props.children()}
         </div>
-        <Footer />
+        <Footer className="footer-fix"/>
       </div>
     );
   }
