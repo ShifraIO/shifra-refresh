@@ -2,26 +2,7 @@ import React, { Component } from 'react';
 import Link from 'gatsby-link';
 import PropTypes from 'prop-types';
 
-import { cx, css } from 'emotion';
-
-const vertCentred = css`margin: 0 auto;`;
-
-const cardSize = css`
-    display: flex;
-    align-items: center;
-
-    min-height: 215px;
-    @media (max-width: 768px) {
-      min-height: 100px;
-    }
-  `;
-
-const cardTitleText = css`display: flex; text-align: center;`;
-
-const menuIcon = css`
-    max-width: 50px;
-    max-height: 50px;
-`;
+import './menuPage.scss';
 
 class MenuPage extends Component {
   constructor(props) {
@@ -31,14 +12,15 @@ class MenuPage extends Component {
       menuName: '',
       menuSlug: '',
       pageList: [],
-      language: "en"
+      language: 'en',
+      defaultLanguage: 'en'
     };
 
     this.mapPageListDataToElem = this.mapPageListDataToElem.bind(this);
     this.getCardTitleForLanguage = this.getCardTitleForLanguage.bind(this);
     this.pageItemToCard = this.pageItemToCard.bind(this);
-    this.themePaletteToCss = this.themePaletteToCss.bind(this);
     this.getIconForPage = this.getIconForPage.bind(this);
+    this.getThemeName = this.getThemeName.bind(this);
   }
 
   componentWillMount() {
@@ -46,37 +28,28 @@ class MenuPage extends Component {
       menuName: this.props.data.contentfulMenuItem.title,
       menuSlug: this.props.data.contentfulMenuItem.slug,
       pageList: this.props.data.contentfulMenuItem.pageList || [],
-      themePalette: this.themePaletteToCss(this.props.data.contentfulMenuItem.themePalette)
+      themeName: this.getThemeName()
     });
   }
 
-  //take a theme palette object (from contentful), convert to relevent css classes
-  themePaletteToCss(themePalette) {
-    return {
-      text: css`
-        color: ${themePalette.background};
-        font-weight: normal;
-
-        &:hover {
-          color: ${themePalette.background};
-        }`,
-
-      background: css`background-color: ${themePalette.primary};`,
-      cardParentContainerHover: css``
-    }
+  //get the theme classname postfix from the menu slug
+  getThemeName() {
+    let endIdx = this.props.data.contentfulMenuItem.slug.indexOf('-');
+    return this.props.data.contentfulMenuItem.slug.substr(0, endIdx);
   }
 
   //given a titlelist, return the title in chosen language, else default to en
   getCardTitleForLanguage(titleList, language) {
-    //default on the first title, english
-    let chosenTitle = titleList[0].titleText;
-
+    let chosenTitle = null;
     titleList.forEach( title => {
       if (title.language.code === language)
          chosenTitle = title.titleText;
     });
 
-    return chosenTitle;
+    if (chosenTitle !== null)
+      return chosenTitle;
+    else
+      return this.getCardTitleForLanguage(titleList, this.state.defaultLanguage);
   }
 
   //using the page list, create the grid of cards
@@ -100,7 +73,7 @@ class MenuPage extends Component {
 
       pageListGrid.push(
         <div className="columns">
-          { row.map(col => { return(<div className="column">{col}</div>) }) }
+          { row.map((col, idx) => { return(<div className="column">{col}</div>) }) }
         </div>
       );
     }
@@ -114,10 +87,10 @@ class MenuPage extends Component {
     const title = this.getCardTitleForLanguage(page.titleList, this.state.language);
 
     return (
-      <div className={`content ${this.state.themePalette.cardParentContainerHover}`}>
-        <div className={`card ${cardSize} ${this.state.themePalette.background}`}>
-          <div className={`card-content ${cardTitleText} ${vertCentred}`}>
-              <Link className={`title ${this.state.themePalette.text}`} to={url}>
+      <div className="content card-background">
+        <div className={`card card-size card-background has-background-${this.state.themeName}`}>
+          <div className="card-content card-title-text vert-centered">
+              <Link className="title has-text-white-bis has-text-weight-light" to={url}>
                 {this.getIconForPage(page)}
                 <br/>
                 {title}
@@ -130,18 +103,18 @@ class MenuPage extends Component {
 
   //given a page and menu title, load the relevent icon
   getIconForPage(page) {
-    let imgImp = "#";
+    let pageIcon = "#";
 
     //try to get the image
     try {
-      imgImp = require(`../content/icons/${this.state.menuSlug}/${page.slug}.png`);
+      pageIcon = require(`../content/icons/${this.state.menuSlug}/${page.slug}.png`);
     } catch (e){
       console.log("file " + `/src/content/icons/${this.state.menuSlug}/${page.slug}.png does not exist` ); 
     };
 
     return (
       <span>
-        <img src={imgImp} className={menuIcon}/>
+        <img src={pageIcon} className="menu-icon"/>
       </span>
     );
   }
@@ -178,12 +151,6 @@ export const pageQuery = graphql`
             code
           }
         }
-      }
-
-      themePalette { 
-        primary
-        secondary
-        background
       }
     }
   }
