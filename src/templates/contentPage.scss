@@ -1,0 +1,48 @@
+$minButtonWidth: 215px;
+
+.column-prev {
+  margin-left: 100px;
+}
+
+.column-next {
+  margin-right: 100px;
+}
+
+.button-background {
+  align-items: center;
+}
+
+.button-size {
+  display: flex;
+  align-items: center;
+
+  min-height: 80px;
+  @media (max-width: 768px) {
+    min-height: 60px;
+	min-width: 100%;
+  }
+}
+
+.button-title-text {
+  display: flex; 
+  text-align: center;
+  margin: 0 auto;
+}
+
+.page-icon {
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.page-button-text {
+  font-weight: normal;
+}
+
+.button-link-text {
+  font-weight: 50;
+  font-size: 1.3rem;
+}
+
+.button-empty {
+  border-color: #fff;
+}
