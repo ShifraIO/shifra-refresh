@@ -41,7 +41,7 @@ class TemplateWrapper extends Component {
 
   render() {
     return (
-      <div>
+      <div >
         <Helmet
           title="Shifra"
           meta={[
@@ -54,19 +54,24 @@ class TemplateWrapper extends Component {
           language={this.state.language}
           theme={this.getThemeStringFromUrl()}
           search={this.state.search}
-        />
-        <div
           style={{
-            margin: '0 auto',
-            maxWidth: 960,
             padding: '0px 1.0875rem 1.45rem',
-            paddingTop: 0,
+            paddingTop: 10000,
           }}
+        />
+        <div className='content-stretch-fix'
+          // style={{
+          //   margin: '0 auto',
+          //   maxWidth: 960,
+          //   padding: '0px 1.0875rem 1.45rem',
+          //   paddingTop: 0,
+          // }}
+
           dir={this.getFontDirection(this.state.language)}
         >
           {this.props.children()}
         </div>
-        <Footer />
+        <Footer className="footer-fix"/>
       </div>
     );
   }
