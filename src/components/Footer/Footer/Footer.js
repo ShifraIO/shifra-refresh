@@ -81,7 +81,7 @@ class Footer extends Component {
             </div>
             <a
               className={footerLink}
-              href={'https://shifra.io/mailto:info@shifra.io'}
+              href={'mailto:info@shifra.io'}
             >
               Contact
             </a>

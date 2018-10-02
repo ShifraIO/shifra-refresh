@@ -43,7 +43,7 @@ class TemplateWrapper extends Component {
     return (
       <div>
         <Helmet
-          title="Gatsby Starter Bulma Storybook"
+          title="Shifra"
           meta={[
             { name: 'description', content: 'Sample' },
             { name: 'keywords', content: 'sample, something' },
