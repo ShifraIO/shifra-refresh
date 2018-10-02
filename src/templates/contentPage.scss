@@ -2,24 +2,32 @@ $minButtonWidth: 215px;
 
 .column-prev {
   margin-left: 100px;
+  @media (max-width: 768px) {
+    margin: 0 75px;
+  }
 }
 
 .column-next {
   margin-right: 100px;
+  @media (max-width: 768px) {
+    margin: 0 75px;
+  }
 }
 
 .button-background {
   align-items: center;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+	max-width: 366.484px;
+  }
 }
 
 .button-size {
   display: flex;
   align-items: center;
-
-  min-height: 80px;
+  min-height: 88px;
   @media (max-width: 768px) {
     min-height: 60px;
-	min-width: 100%;
   }
 }
 
@@ -27,6 +35,7 @@ $minButtonWidth: 215px;
   display: flex; 
   text-align: center;
   margin: 0 auto;
+  white-space: normal;
 }
 
 .page-icon {
