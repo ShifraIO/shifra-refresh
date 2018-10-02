@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 
 const NavbarItem = props => {
   return (
-    <Link to={props.to} className="navbar-item">
-      {props.iconClass && (
-        <span className="icon">
-          <i className={props.iconClass} />
-        </span>
-      )}
-      <span>{props.children}</span>
+    <Link to={props.to} className="navbar-item" onClick={props.onClick !== null ? props.onClick : null}>
+        {props.iconClass && (
+          <span className="icon">
+            <i className={props.iconClass} />
+          </span>
+        )}
+        <span>{props.children}</span>
     </Link>
   );
 };
