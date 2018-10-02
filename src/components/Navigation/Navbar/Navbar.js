@@ -23,10 +23,9 @@ class Navbar extends Component {
     this.mapPageListToDropdown = this.mapPageListToDropdown.bind(this);
     this.getMenuTextForLanguage = this.getMenuTextForLanguage.bind(this);
     this.getPageTitleForLanguage = this.getPageTitleForLanguage.bind(this);
-    this.isContentAvaliableInLanguage = this.isContentAvaliableInLanguage.bind(
-      this
-    );
+    this.isContentAvaliableInLanguage = this.isContentAvaliableInLanguage.bind(this);
     this.getTheme = this.getTheme.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
   }
 
   componentWillMount() {
@@ -48,6 +47,10 @@ class Navbar extends Component {
     this.setState(prevState => {
       return { isMenuOpen: !prevState.isMenuOpen };
     });
+  }
+
+  closeMenu() {
+    this.state.isMenuOpen = false;
   }
 
   isContentAvaliableInLanguage(contentArray, language) {
@@ -103,6 +106,7 @@ class Navbar extends Component {
           key={index}
           to={`${menuItem.slug}${this.state.search}`}
           title={this.getMenuTextForLanguage(menuItem, this.state.language)}
+          onClick={this.closeMenu}
         >
           {this.mapPageListToDropdown(menuItem.pageList || [], menuItem.slug)}
         </NavbarDropdown>
@@ -115,7 +119,7 @@ class Navbar extends Component {
       const title = this.getPageTitleForLanguage(page, this.state.language);
       const url = `/${menuSlug}/${page.slug}`;
       return (
-        <NavbarItem key={index} to={`${url}${this.state.search}`}>
+        <NavbarItem key={index} to={`${url}${this.state.search}`} onClick={this.closeMenu}>
           {title}
         </NavbarItem>
       );
@@ -157,12 +161,12 @@ class Navbar extends Component {
         <NavbarMenu isOpen={this.state.isMenuOpen}>
           <NavbarStart>{this.mapMenuToNavbar(this.state.menuList)}</NavbarStart>
           <NavbarEnd>
-            <NavbarItem
-              to={`/about${this.state.search}`}
+            <NavbarItem to={`/clinic-locations${this.state.search}`} 
+              iconClass="fas fa-map-marker"
+              onClick={this.closeMenu}>Clinic Locations</NavbarItem>
+            <NavbarItem to={`/about${this.state.search}`} 
               iconClass="fas fa-info"
-            >
-              About
-            </NavbarItem>
+              onClick={this.closeMenu}>About</NavbarItem>
             <a href={'mailto:info@shifra.io'} className="navbar-item">
               <span className="icon">
                 <i className={'fas fa-envelope'} />
