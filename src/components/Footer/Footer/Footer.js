@@ -100,14 +100,14 @@ class Footer extends Component {
               <i className="fab fa-instagram" />
             </a>
           </div>
-	  <div>
-	    <a
+          <div>
+            <a
               className={footerLink}
               href={'https://www.nfaw.org/donations'}
             >
               Donate Now
             </a>
-	  </div>
+          </div>
           <div className="section has-text-centered">
             <div className="columns">
               <div className="column is-2">
