@@ -93,7 +93,7 @@ class Footer extends Component {
             >
               <i className="fab fa-facebook-f" />
             </a>
-            <a
+            <a 
               className={socialIconLink}
               href={'https://www.instagram.com/Shifra_au/'}
             >
