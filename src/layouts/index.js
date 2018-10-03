@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import './index.scss';
 import decodeUrlString from '../utils/search-query';
 import Footer from '../components/Footer/Footer';
+import { withRouter } from 'react-router';
 
 class TemplateWrapper extends Component {
   constructor(props) {
@@ -14,23 +15,23 @@ class TemplateWrapper extends Component {
       search: '',
     };
 
-    this.getFontDirection = this.getFontDirection.bind(this);
     this.getThemeStringFromUrl = this.getThemeStringFromUrl.bind(this);
   }
 
-  componentWillMount() {
+  componentWillMount(props) {
     this.setState({
       language: decodeUrlString(this.props.location.search).lang,
       search: this.props.location.search,
     });
   }
 
-  getFontDirection(language = '') {
-    // Will need to extend for greater language support.
-    if (language === 'ar') {
-      return 'rtl';
+  componentWillUpdate(props) {
+    if (this.state.language !== decodeUrlString(props.location.search).lang) {
+      this.setState({
+        language: decodeUrlString(props.location.search).lang,
+        search: props.location.search,
+      });
     }
-    return 'ltr';
   }
 
   getThemeStringFromUrl() {
@@ -41,7 +42,7 @@ class TemplateWrapper extends Component {
 
   render() {
     return (
-      <div >
+      <div>
         <Helmet
           title="Shifra"
           meta={[
@@ -59,19 +60,8 @@ class TemplateWrapper extends Component {
             paddingTop: 10000,
           }}
         />
-        <div className='content-stretch-fix'
-          // style={{
-          //   margin: '0 auto',
-          //   maxWidth: 960,
-          //   padding: '0px 1.0875rem 1.45rem',
-          //   paddingTop: 0,
-          // }}
-
-          dir={this.getFontDirection(this.state.language)}
-        >
-          {this.props.children()}
-        </div>
-        <Footer className="footer-fix"/>
+        <div className="content-stretch-fix">{this.props.children()}</div>
+        <Footer className="footer-fix" />
       </div>
     );
   }

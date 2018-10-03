@@ -8,6 +8,7 @@ import NavbarEnd from '../NavbarEnd';
 import NavbarDropdown from '../NavbarDropdown';
 import NavbarItem from '../NavbarItem';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 
 function mapMenuToState(menuData) {
   return menuData.edges.map(data => data.node);
@@ -23,9 +24,12 @@ class Navbar extends Component {
     this.mapPageListToDropdown = this.mapPageListToDropdown.bind(this);
     this.getMenuTextForLanguage = this.getMenuTextForLanguage.bind(this);
     this.getPageTitleForLanguage = this.getPageTitleForLanguage.bind(this);
-    this.isContentAvaliableInLanguage = this.isContentAvaliableInLanguage.bind(this);
+    this.isContentAvaliableInLanguage = this.isContentAvaliableInLanguage.bind(
+      this
+    );
     this.getTheme = this.getTheme.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
+    this.getRouteWithLanguage = this.getRouteWithLanguage.bind(this);
   }
 
   componentWillMount() {
@@ -40,7 +44,16 @@ class Navbar extends Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setState(Object.assign(this.state, { theme: props.theme }));
+    this.setState(
+      Object.assign(this.state, {
+        theme: props.theme,
+        language: props.language,
+      })
+    );
+  }
+
+  getRouteWithLanguage(language) {
+    return `${this.props.location.pathname}?lang=${language}`;
   }
 
   toggleMenu() {
@@ -104,7 +117,7 @@ class Navbar extends Component {
       return (
         <NavbarDropdown
           key={index}
-          to={`/${menuItem.slug}${this.state.search}`}
+          to={`/${menuItem.slug}${this.props.history.location.search}`}
           title={this.getMenuTextForLanguage(menuItem, this.state.language)}
           onClick={this.closeMenu}
         >
@@ -119,7 +132,11 @@ class Navbar extends Component {
       const title = this.getPageTitleForLanguage(page, this.state.language);
       const url = `/${menuSlug}/${page.slug}`;
       return (
-        <NavbarItem key={index} to={`${url}${this.state.search}`} onClick={this.closeMenu}>
+        <NavbarItem
+          key={index}
+          to={`${url}${this.props.history.location.search}`}
+          onClick={this.closeMenu}
+        >
           {title}
         </NavbarItem>
       );
@@ -161,12 +178,26 @@ class Navbar extends Component {
         <NavbarMenu isOpen={this.state.isMenuOpen}>
           <NavbarStart>{this.mapMenuToNavbar(this.state.menuList)}</NavbarStart>
           <NavbarEnd>
-            <NavbarItem to={`/clinic-locations${this.state.search}`} 
+            <NavbarDropdown title={`Aa`}>
+              <NavbarItem to={this.getRouteWithLanguage('en')}>
+                English
+              </NavbarItem>
+              <NavbarItem to={this.getRouteWithLanguage('ar')}>عربى</NavbarItem>
+            </NavbarDropdown>
+            <NavbarItem
+              to={`/clinic-locations${this.state.search}`}
               iconClass="fas fa-map-marker"
-              onClick={this.closeMenu}>Clinic Locations</NavbarItem>
-            <NavbarItem to={`/about${this.state.search}`} 
+              onClick={this.closeMenu}
+            >
+              Clinic Locations
+            </NavbarItem>
+            <NavbarItem
+              to={`/about${this.state.search}`}
               iconClass="fas fa-info"
-              onClick={this.closeMenu}>About</NavbarItem>
+              onClick={this.closeMenu}
+            >
+              About
+            </NavbarItem>
             <a href={'mailto:info@shifra.io'} className="navbar-item">
               <span className="icon">
                 <i className={'fas fa-envelope'} />
@@ -185,6 +216,7 @@ Navbar.propTypes = {
   language: PropTypes.string,
   search: PropTypes.string,
   theme: PropTypes.string,
+  history: PropTypes.any,
 };
 
-export default Navbar;
+export default withRouter(Navbar);
