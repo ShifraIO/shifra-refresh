@@ -87,17 +87,19 @@ class MenuPage extends Component {
     const title = this.getCardTitleForLanguage(page.titleList, this.state.language);
 
     return (
-      <div className="content card-background">
-        <div className={`card card-size has-background-${this.state.themeName}`}>
-          <div className="card-content card-title-text">
-              <Link className="title has-text-white-bis has-text-weight-light" to={url}>
+      <Link to={url}>
+        <div className="content card-background">
+          <div className={`card card-size has-background-${this.state.themeName}`}>
+            <div className="card-content card-title-text">
+              <p className="title has-text-white-bis has-text-weight-light">
                 {this.getIconForPage(page)}
                 <br/>
                 {title}
-              </Link>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     )
   }
 
