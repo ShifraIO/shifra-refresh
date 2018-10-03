@@ -102,23 +102,20 @@ class MenuPage extends Component {
     );
 
     return (
-      <div className="content card-background">
-        <div
-          className={`card card-size has-background-${this.state.themeName}`}
-        >
-          <div className="card-content card-title-text">
-            <Link
-              className="title has-text-white-bis has-text-weight-light"
-              to={url}
-            >
-              {this.getIconForPage(page)}
-              <br />
-              {title}
-            </Link>
+      <Link to={url}>
+        <div className="content card-background">
+          <div className={`card card-size has-background-${this.state.themeName}`}>
+            <div className="card-content card-title-text">
+              <p className="title has-text-white-bis has-text-weight-light">
+                {this.getIconForPage(page)}
+                <br/>
+                {title}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      </Link>
+    )
   }
 
   //given a page and menu title, load the relevent icon
