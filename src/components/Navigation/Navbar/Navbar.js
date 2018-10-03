@@ -104,7 +104,7 @@ class Navbar extends Component {
       return (
         <NavbarDropdown
           key={index}
-          to={`${menuItem.slug}${this.state.search}`}
+          to={`/${menuItem.slug}${this.state.search}`}
           title={this.getMenuTextForLanguage(menuItem, this.state.language)}
           onClick={this.closeMenu}
         >
