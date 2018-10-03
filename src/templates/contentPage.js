@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
+import Link from 'gatsby-link';
 import PropTypes from 'prop-types';
 import decodeUrlString from '../utils/search-query';
-
-// class ContentPage extends Component {
-//   render() {
-//     return (
-//       <div
-//         className="section content"
-//         dangerouslySetInnerHTML={{
-//           __html: this.props.data.contentfulPage.content.childMarkdownRemark
-//             .html,
-//         }}
-//       />
-//     );
-//   }
-// }
+import './contentPage.scss';
 
 class ContentPage extends Component {
   constructor(props) {
@@ -30,14 +18,38 @@ class ContentPage extends Component {
       this
     );
     this.buildPageHTML = this.buildPageHTML.bind(this);
+	this.getButtonTitleForLanguage = this.getButtonTitleForLanguage.bind(this);
+	this.mapPageListDataToElem = this.mapPageListDataToElem.bind(this);
+	this.getIconForPage = this.getIconForPage.bind(this);
+	this.getThemeName = this.getThemeName.bind(this);
   }
 
   componentWillMount() {
     this.setState({
-      language:
+	  language:
         decodeUrlString(this.props.location.search).lang || this.state.language,
       search: this.props.location.search,
     });
+  }
+  
+  //get the theme classname postfix from the menu slug
+  getThemeName(menuSlug) {
+    let endIdx = menuSlug.indexOf('-');
+    return menuSlug.substr(0, endIdx);
+  }
+  
+  //given a titlelist, return the title in chosen language, else default to en
+  getButtonTitleForLanguage(titleList, language) {
+    let chosenTitle = null;
+    titleList.forEach( title => {
+      if (title.language.code === language)
+         chosenTitle = title.titleText;
+    });
+
+    if (chosenTitle !== null)
+      return chosenTitle;
+    else
+      return this.getCardTitleForLanguage(titleList, this.state.defaultLanguage);
   }
 
   isContentAvaliableInLanguage(contentArray, language) {
@@ -67,19 +79,124 @@ class ContentPage extends Component {
   buildPageHTML(pageContentHTML) {
     return { __html: pageContentHTML };
   }
+  
+  //using the page list, create the buttons
+  mapPageListDataToElem() {
+    let pageListGrid = [],
+    max = 2,
+    prevPage,
+	nextPage,
+	themeNamePrev,
+	themeNameNext,
+	urlPrev,
+	urlNext,
+	titlePrev,
+	titleNext;
+	
+	prevPage = this.props.data.contentfulPage.previousPage;
+    if (prevPage !== null){
+	  themeNamePrev = this.getThemeName(prevPage.parentMenu.slug);
+	  urlPrev = `/${prevPage.parentMenu.slug}/${prevPage.slug}`;
+	  titlePrev = this.getButtonTitleForLanguage(prevPage.titleList, this.state.language);
+	  pageListGrid.push(
+	    <div className="column column-prev">
+		  <div className="content button-background">
+		    <div className={`button button-size has-background-${themeNamePrev}`}>
+		      <div className="button-content button-title-text">
+			    <Link className="title has-text-white-bis button-link-text" to={urlPrev}>
+				  {this.getIconForPage(prevPage)}
+				  <br/>
+				  {titlePrev}
+				</Link>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  );
+    } else {
+		pageListGrid.push(
+		  <div className="column column-prev">
+		    <div className="content button-background">
+			  <div className="button button-size button-empty">
+				<div className="button-content button-title-text">
+				</div>
+			  </div>
+			</div>
+		  </div>
+		);
+	}
+	
+    nextPage = this.props.data.contentfulPage.nextPage;
+    if (nextPage !== null){
+	  themeNameNext = this.getThemeName(nextPage.parentMenu.slug)
+	  urlNext = `/${nextPage.parentMenu.slug}/${nextPage.slug}`;
+	  titleNext = this.getButtonTitleForLanguage(nextPage.titleList, this.state.language);
+	  pageListGrid.push(
+	    <div className="column column-next">
+		  <div className="content button-background">
+			<div className={`button button-size has-background-${themeNameNext}`}>
+			  <div className="button-content button-title-text">
+				<Link className="title has-text-white-bis button-link-text" to={urlNext}>
+				  {this.getIconForPage(nextPage)}
+				  <br/>
+				  {titleNext}
+				</Link>
+			  </div>
+			</div>
+		  </div>
+	    </div>
+	  )
+    } else {
+		pageListGrid.push(
+		  <div className="column column-next">
+		    <div className="content button-background">
+			  <div className="button button-size button-empty">
+				<div className="button-content button-title-text">
+				</div>
+			  </div>
+			</div>
+		  </div>
+		);
+	}
+
+    return pageListGrid;
+  }
+  
+  //given a page and menu title, load the relevent icon
+  getIconForPage(page) {
+    let pageIcon = "#";
+
+    //try to get the image
+    pageIcon = require(`../content/icons/${page.parentMenu.slug}/${page.slug}.png`);
+	
+	if (pageIcon === "#")
+	  pageIcon = require(`../content/shifra-logo.png`)
+
+    return (
+      <span>
+        <img src={pageIcon} className="page-icon"/>
+      </span>
+    );
+  }
 
   render() {
     return (
-      <div
-        className="section content"
-        dangerouslySetInnerHTML={this.buildPageHTML(
-          this.getContentForLanguage(
-            this.props.data.contentfulPage.contentList,
-            this.state.language,
-            this.state.defaultLanguage
-          )
-        )}
-      />
+      <div>
+		<div
+          className="section content"
+          dangerouslySetInnerHTML={this.buildPageHTML(
+			this.getContentForLanguage(
+              this.props.data.contentfulPage.contentList,
+              this.state.language,
+              this.state.defaultLanguage
+			)
+          )}
+		>
+		</div>
+		<div className="columns">
+		  {this.mapPageListDataToElem()}
+		</div>
+	  </div>
     );
   }
 }
@@ -107,6 +224,36 @@ export const pageQuery = graphql`
         }
         language {
           code
+        }
+      }
+	  nextPage {
+		slug
+		titleList {
+          titleText
+          language {
+            code
+          }
+        }
+		parentMenu {
+		  slug
+		}
+	  }
+	  previousPage {
+		slug
+		titleList {
+          titleText
+          language {
+            code
+          }
+        }
+		parentMenu {
+		  slug
+		}
+	  }
+	  parentMenu {
+        slug
+		menuItemTextList {
+          menuItemText
         }
       }
     }
