@@ -137,22 +137,19 @@ class ContentPage extends Component {
       );
       pageListGrid.push(
         <div className="column column-prev">
-          <div className="content button-background">
-            <div
-              className={`button button-size has-background-${themeNamePrev}`}
-            >
-              <div className="button-content button-title-text">
-                <Link
-                  className="title has-text-white-bis button-link-text"
-                  to={urlPrev}
-                >
-                  {this.getIconForPage(prevPage)}
-                  <br />
-                  {titlePrev}
-                </Link>
+          <Link to={urlPrev}>
+			<div className="content button-background">
+              <div className={`button button-size has-background-${themeNamePrev}`}>
+				<div className="button-content button-title-text">
+                  <p className="title has-text-white-bis button-link-text">
+					{this.getIconForPage(prevPage)}
+					<br />
+					{titlePrev}
+                  </p>
+				</div>
               </div>
             </div>
-          </div>
+		  </Link>
         </div>
       );
     } else {
@@ -179,22 +176,19 @@ class ContentPage extends Component {
       );
       pageListGrid.push(
         <div className="column column-next">
-          <div className="content button-background">
-            <div
-              className={`button button-size has-background-${themeNameNext}`}
-            >
-              <div className="button-content button-title-text">
-                <Link
-                  className="title has-text-white-bis button-link-text"
-                  to={urlNext}
-                >
-                  {this.getIconForPage(nextPage)}
-                  <br />
-                  {titleNext}
-                </Link>
+		  <Link to={urlNext}>
+			<div className="content button-background">
+              <div className={`button button-size has-background-${themeNameNext}`}>
+				<div className="button-content button-title-text">
+                  <p className="title has-text-white-bis button-link-text">
+					{this.getIconForPage(nextPage)}
+					<br />
+					{titleNext}
+				  </p>
+				</div>
               </div>
-            </div>
-          </div>
+			</div>
+		  </Link>
         </div>
       );
     } else {
