@@ -7,6 +7,7 @@ import NavbarStart from '../NavbarStart';
 import NavbarEnd from '../NavbarEnd';
 import NavbarDropdown from '../NavbarDropdown';
 import NavbarItem from '../NavbarItem';
+import NavDropdown from '../NavDropdown';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
@@ -178,13 +179,13 @@ class Navbar extends Component {
         <NavbarMenu isOpen={this.state.isMenuOpen}>
           <NavbarStart>{this.mapMenuToNavbar(this.state.menuList)}</NavbarStart>
           <NavbarEnd>
-            <NavbarDropdown title={`Aa`}>
+            <NavDropdown title={`Aa`}>
               <NavbarItem to={this.getRouteWithLanguage('en')}>
                 English
               </NavbarItem>
               <NavbarItem to={this.getRouteWithLanguage('ar')}>عربى</NavbarItem>
-            </NavbarDropdown>
-            <NavbarDropdown title={`Links`}>
+            </NavDropdown>
+            <NavDropdown title={`Links`}>
               <NavbarItem
 				to={`/about${this.props.history.location.search}`}
 				iconClass="fas fa-info"
@@ -198,7 +199,7 @@ class Navbar extends Component {
 				</span>
 				<span>Contact</span>
               </a>
-			</NavbarDropdown>
+			</NavDropdown>
 			<NavbarItem
 			  to={`/clinic-locations${this.props.history.location.search}`}
 			  iconClass="fas fa-map-marker"
