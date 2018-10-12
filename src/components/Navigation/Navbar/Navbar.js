@@ -53,7 +53,9 @@ class Navbar extends Component {
   }
 
   getRouteWithLanguage(language) {
-    return `${this.props.location.pathname}?lang=${language}`;
+    return language
+      ? `${this.props.location.pathname}?lang=${language}`
+      : this.props.location.pathname;
   }
 
   toggleMenu() {
@@ -178,32 +180,43 @@ class Navbar extends Component {
         <NavbarMenu isOpen={this.state.isMenuOpen}>
           <NavbarStart>{this.mapMenuToNavbar(this.state.menuList)}</NavbarStart>
           <NavbarEnd>
-            <NavbarDropdown title={`Aa`}>
+            <NavbarDropdown
+              icon={'fas fa-globe-asia'}
+              to={this.getRouteWithLanguage(this.state.language)}
+              position={'right'}
+            >
               <NavbarItem to={this.getRouteWithLanguage('en')}>
                 English
               </NavbarItem>
               <NavbarItem to={this.getRouteWithLanguage('ar')}>عربى</NavbarItem>
             </NavbarDropdown>
-            <NavbarItem
-              to={`/clinic-locations${this.state.search}`}
-              iconClass="fas fa-map-marker"
-              onClick={this.closeMenu}
+            <NavbarDropdown
+              title={'More'}
+              to={this.getRouteWithLanguage(this.state.language)}
+              position={'right'}
             >
-              Clinic Locations
-            </NavbarItem>
-            <NavbarItem
-              to={`/about${this.state.search}`}
-              iconClass="fas fa-info"
-              onClick={this.closeMenu}
-            >
-              About
-            </NavbarItem>
-            <a href={'mailto:info@shifra.io'} className="navbar-item">
-              <span className="icon">
-                <i className={'fas fa-envelope'} />
-              </span>
-              <span>Contact</span>
-            </a>
+              <NavbarItem
+                to={`/clinic-locations${this.state.search}`}
+                iconClass="fas fa-map-marker"
+                onClick={this.closeMenu}
+              >
+                Clinic Locations
+              </NavbarItem>
+              <NavbarItem
+                to={`/about${this.state.search}`}
+                iconClass="fas fa-info"
+                onClick={this.closeMenu}
+              >
+                About
+              </NavbarItem>
+              <hr className="navbar-divider" />
+              <a href={'mailto:info@shifra.io'} className="navbar-item">
+                <span className="icon">
+                  <i className={'fas fa-envelope'} />
+                </span>
+                <span>Contact</span>
+              </a>
+            </NavbarDropdown>
           </NavbarEnd>
         </NavbarMenu>
       </nav>
@@ -217,6 +230,7 @@ Navbar.propTypes = {
   search: PropTypes.string,
   theme: PropTypes.string,
   history: PropTypes.any,
+  location: PropTypes.any,
 };
 
 export default withRouter(Navbar);
