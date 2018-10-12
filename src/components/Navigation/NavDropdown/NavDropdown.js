@@ -1,30 +1,20 @@
 import React from 'react';
-import Link from 'gatsby-link';
 import PropTypes from 'prop-types';
 
-function getMenuPages(pages, slugPrefix) {
-  if (pages) {
-    return pages.map(page => (
-      <Link
-        key={page.slug}
-        to={`${slugPrefix}/${page.slug}`}
-        className="navbar-item"
-      >
-        {page.title}
-      </Link>
-    ));
-  }
-
-  return <span className="navbar-item">Empty</span>;
+const NavbarDropdown = props => {
+  return (
+    <div className="navbar-item has-dropdown is-hoverable">
+      <p className="navbar-link" onClick={props.onClick}>
+	    {props.title}
+	  </p>
+      <div className="navbar-dropdown">{props.children}</div>
+    </div>
+  );
 }
 
-const Header = ({ pages = [], slugPrefix = '' }) => (
-  <div className="navbar-dropdown">{getMenuPages(pages, slugPrefix)}</div>
-);
-
-Header.propTypes = {
-  pages: PropTypes.array,
-  slugPrefix: PropTypes.string,
+NavbarDropdown.propTypes = {
+  children: PropTypes.any,
+  title: PropTypes.string.isRequired,
 };
 
-export default Header;
+export default NavbarDropdown;

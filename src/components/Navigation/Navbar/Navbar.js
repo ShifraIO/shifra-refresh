@@ -7,6 +7,7 @@ import NavbarStart from '../NavbarStart';
 import NavbarEnd from '../NavbarEnd';
 import NavbarDropdown from '../NavbarDropdown';
 import NavbarItem from '../NavbarItem';
+import NavDropdown from '../NavDropdown';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
@@ -169,7 +170,7 @@ class Navbar extends Component {
         role="navigation"
         aria-label="main navigation"
       >
-        <NavbarBrand logo={logo} to={`${this.state.search}`}>
+        <NavbarBrand logo={logo} to={`${this.props.history.location.search}`}>
           <NavbarHamburger
             isOpen={this.state.isMenuOpen}
             clickEvent={this.toggleMenu}
@@ -178,32 +179,34 @@ class Navbar extends Component {
         <NavbarMenu isOpen={this.state.isMenuOpen}>
           <NavbarStart>{this.mapMenuToNavbar(this.state.menuList)}</NavbarStart>
           <NavbarEnd>
-            <NavbarDropdown title={`Aa`}>
+            <NavDropdown title={`Aa`}>
               <NavbarItem to={this.getRouteWithLanguage('en')}>
                 English
               </NavbarItem>
               <NavbarItem to={this.getRouteWithLanguage('ar')}>عربى</NavbarItem>
-            </NavbarDropdown>
-            <NavbarItem
-              to={`/clinic-locations${this.state.search}`}
-              iconClass="fas fa-map-marker"
-              onClick={this.closeMenu}
+            </NavDropdown>
+            <NavDropdown title={`Links`}>
+              <NavbarItem
+				to={`/about${this.props.history.location.search}`}
+				iconClass="fas fa-info"
+				onClick={this.closeMenu}
+              >
+				About
+              </NavbarItem>
+              <a href={'mailto:info@shifra.io'} className="navbar-item">
+				<span className="icon">
+                  <i className={'fas fa-envelope'} />
+				</span>
+				<span>Contact</span>
+              </a>
+			</NavDropdown>
+			<NavbarItem
+			  to={`/clinic-locations${this.props.history.location.search}`}
+			  iconClass="fas fa-map-marker"
+			  onClick={this.closeMenu}
             >
-              Clinic Locations
+			  Clinic Locations
             </NavbarItem>
-            <NavbarItem
-              to={`/about${this.state.search}`}
-              iconClass="fas fa-info"
-              onClick={this.closeMenu}
-            >
-              About
-            </NavbarItem>
-            <a href={'mailto:info@shifra.io'} className="navbar-item">
-              <span className="icon">
-                <i className={'fas fa-envelope'} />
-              </span>
-              <span>Contact</span>
-            </a>
           </NavbarEnd>
         </NavbarMenu>
       </nav>
