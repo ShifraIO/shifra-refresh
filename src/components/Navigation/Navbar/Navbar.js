@@ -169,7 +169,7 @@ class Navbar extends Component {
         role="navigation"
         aria-label="main navigation"
       >
-        <NavbarBrand logo={logo} to={`${this.state.search}`}>
+        <NavbarBrand logo={logo} to={`${this.props.history.location.search}`}>
           <NavbarHamburger
             isOpen={this.state.isMenuOpen}
             clickEvent={this.toggleMenu}
@@ -185,14 +185,14 @@ class Navbar extends Component {
               <NavbarItem to={this.getRouteWithLanguage('ar')}>عربى</NavbarItem>
             </NavbarDropdown>
             <NavbarItem
-              to={`/clinic-locations${this.state.search}`}
+              to={`/clinic-locations${this.props.history.location.search}`}
               iconClass="fas fa-map-marker"
               onClick={this.closeMenu}
             >
               Clinic Locations
             </NavbarItem>
             <NavbarItem
-              to={`/about${this.state.search}`}
+              to={`/about${this.props.history.location.search}`}
               iconClass="fas fa-info"
               onClick={this.closeMenu}
             >
