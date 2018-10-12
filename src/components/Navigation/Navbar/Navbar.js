@@ -223,14 +223,14 @@ class Navbar extends Component {
               position={'right'}
             >
               <NavbarItem
-                to={`/clinic-locations${this.state.search}`}
+                to={`/clinic-locations${this.props.history.location.search}`}
                 iconClass="fas fa-map-marker"
                 onClick={this.closeMenu}
               >
                 {this.getPageTitleForLanguage(staticMenu.Clinic, this.state.language)}
               </NavbarItem>
               <NavbarItem
-                to={`/about${this.state.search}`}
+                to={`/about${this.props.history.location.search}`}
                 iconClass="fas fa-info"
                 onClick={this.closeMenu}
               >
