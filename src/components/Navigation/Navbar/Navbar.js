@@ -165,6 +165,33 @@ class Navbar extends Component {
   }
 
   render() {
+    const staticMenu = {
+      More: {
+        titleList: [
+          { titleText: 'More', language: { code: 'en' } },
+          { titleText: 'أكثر من', language: { code: 'ar' } }
+        ],
+      },
+      About: {
+        titleList: [
+          { titleText: 'About', language: { code: 'en' } },
+          { titleText: 'حول', language: { code: 'ar' } },
+        ],
+      },
+      Clinic: {
+        titleList: [
+          { titleText: 'Clinic Locations', language: { code: 'en' } },
+          { titleText: 'مواقع العيادة', language: { code: 'ar' } },
+        ],
+      },
+      Contact: {
+        titleList: [
+          { titleText: 'Contact', language: { code: 'en' } },
+          { titleText: 'اتصل', language: { code: 'ar' } },
+        ],
+      },
+    };
+
     return (
       <nav
         className={`navbar is-fixed-top is-${this.getTheme()}`}
@@ -191,7 +218,7 @@ class Navbar extends Component {
               <NavbarItem to={this.getRouteWithLanguage('ar')}>عربى</NavbarItem>
             </NavbarDropdown>
             <NavbarDropdown
-              title={'More'}
+              title={this.getPageTitleForLanguage(staticMenu.More, this.state.language)}
               to={this.getRouteWithLanguage(this.state.language)}
               position={'right'}
             >
@@ -200,21 +227,21 @@ class Navbar extends Component {
                 iconClass="fas fa-map-marker"
                 onClick={this.closeMenu}
               >
-                Clinic Locations
+                {this.getPageTitleForLanguage(staticMenu.Clinic, this.state.language)}
               </NavbarItem>
               <NavbarItem
                 to={`/about${this.state.search}`}
                 iconClass="fas fa-info"
                 onClick={this.closeMenu}
               >
-                About
+                {this.getPageTitleForLanguage(staticMenu.About, this.state.language)}
               </NavbarItem>
               <hr className="navbar-divider" />
               <a href={'mailto:info@shifra.io'} className="navbar-item">
                 <span className="icon">
                   <i className={'fas fa-envelope'} />
                 </span>
-                <span>Contact</span>
+                <span>{this.getPageTitleForLanguage(staticMenu.Contact, this.state.language)}</span>
               </a>
             </NavbarDropdown>
           </NavbarEnd>
