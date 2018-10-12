@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import './index.scss';
 import decodeUrlString from '../utils/search-query';
 import Footer from '../components/Footer/Footer';
-import { withRouter } from 'react-router';
 
 class TemplateWrapper extends Component {
   constructor(props) {
