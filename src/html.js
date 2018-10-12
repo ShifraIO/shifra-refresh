@@ -34,7 +34,7 @@ module.exports = class HTML extends React.Component {
           {css}
           <script
             defer
-            src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"
+            src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
           />
         </head>
         <body {...this.props.bodyAttributes}>
