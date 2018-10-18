@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import Header from '../components/Header';
 import './index.scss';
 import decodeUrlString from '../utils/search-query';
-import Footer from '../components/Footer/Footer';
+import Footer from '../components/Footer';
 
 class TemplateWrapper extends Component {
   constructor(props) {
@@ -60,7 +60,10 @@ class TemplateWrapper extends Component {
           }}
         />
         <div className="content-stretch-fix">{this.props.children()}</div>
-        <Footer className="footer-fix" />
+        <Footer
+          language={this.state.language}
+          search={this.state.search}
+          className="footer-fix" />
       </div>
     );
   }
