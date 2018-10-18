@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../../../content/shifra-logo.png';
 import NavbarBrand from '../NavbarBrand/NavbarBrand';
 import NavbarHamburger from '../NavbarHamburger';
 import NavbarMenu from '../NavbarMenu';
@@ -197,10 +198,7 @@ class Navbar extends Component {
         role="navigation"
         aria-label="main navigation"
       >
-        <NavbarBrand
-          logo={require(`../../../content/shifra-logo.png`)}
-          to={`/${this.props.history.location.search}`}
-        >
+        <NavbarBrand logo={logo} to={`/${this.props.history.location.search}`}>
           <NavbarHamburger
             isOpen={this.state.isMenuOpen}
             clickEvent={this.toggleMenu}
