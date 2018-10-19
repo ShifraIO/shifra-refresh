@@ -52,7 +52,7 @@ class ContentPage extends Component {
     return 'ltr';
   }
 
-  //get the theme classname postfix from the menu slug
+  // get the theme classname postfix from the menu slug
   getThemeName(menuSlug) {
     let endIdx = menuSlug.indexOf('-');
     return menuSlug.substr(0, endIdx);
@@ -72,7 +72,7 @@ class ContentPage extends Component {
       );
   }
 
-  //given a titlelist, return the title in chosen language, else default to en
+  // given a titlelist, return the title in chosen language, else default to en
   getButtonTitleForLanguage(titleList, language) {
     let chosenTitle = null;
     titleList.forEach(title => {
@@ -112,20 +112,18 @@ class ContentPage extends Component {
     return { __html: pageContentHTML };
   }
 
-  //using the page list, create the buttons
+  // using the page list, create the buttons
   mapPageListDataToElem() {
-    let pageListGrid = [],
-      max = 2,
-      prevPage,
-      nextPage,
-      themeNamePrev,
-      themeNameNext,
-      urlPrev,
-      urlNext,
-      titlePrev,
-      titleNext;
+    const pageListGrid = [];
+    const prevPage = this.props.data.contentfulPage.previousPage;
+    const nextPage = this.props.data.contentfulPage.nextPage;
+    let themeNamePrev = null;
+    let themeNameNext = null;
+    let urlPrev = null;
+    let urlNext = null;
+    let titlePrev = null;
+    let titleNext = null;
 
-    prevPage = this.props.data.contentfulPage.previousPage;
     if (prevPage !== null) {
       themeNamePrev = this.getThemeName(prevPage.parentMenu.slug);
       urlPrev = `/${prevPage.parentMenu.slug}/${prevPage.slug}${
@@ -138,18 +136,18 @@ class ContentPage extends Component {
       pageListGrid.push(
         <div className="column column-prev">
           <Link to={urlPrev}>
-			<div className="content button-background">
+            <div className="content button-background">
               <div className={`button button-size has-background-${themeNamePrev}`}>
-				<div className="button-content button-title-text">
+                <div className="button-content button-title-text">
                   <p className="title has-text-white-bis button-link-text">
-					{this.getIconForPage(prevPage)}
-					<br />
-					{titlePrev}
+                    {this.getIconForPage(prevPage)}
+                    <br />
+                    {titlePrev}
                   </p>
-				</div>
+                </div>
               </div>
             </div>
-		  </Link>
+          </Link>
         </div>
       );
     } else {
@@ -164,7 +162,6 @@ class ContentPage extends Component {
       );
     }
 
-    nextPage = this.props.data.contentfulPage.nextPage;
     if (nextPage !== null) {
       themeNameNext = this.getThemeName(nextPage.parentMenu.slug);
       urlNext = `/${nextPage.parentMenu.slug}/${nextPage.slug}${
@@ -176,19 +173,19 @@ class ContentPage extends Component {
       );
       pageListGrid.push(
         <div className="column column-next">
-		  <Link to={urlNext}>
-			<div className="content button-background">
+          <Link to={urlNext}>
+            <div className="content button-background">
               <div className={`button button-size has-background-${themeNameNext}`}>
-				<div className="button-content button-title-text">
+                <div className="button-content button-title-text">
                   <p className="title has-text-white-bis button-link-text">
-					{this.getIconForPage(nextPage)}
-					<br />
-					{titleNext}
-				  </p>
-				</div>
+                    {this.getIconForPage(nextPage)}
+                    <br />
+                    {titleNext}
+                  </p>
+                </div>
               </div>
-			</div>
-		  </Link>
+            </div>
+          </Link>
         </div>
       );
     } else {
@@ -206,11 +203,11 @@ class ContentPage extends Component {
     return pageListGrid;
   }
 
-  //given a page and menu title, load the relevent icon
+  // given a page and menu title, load the relevent icon
   getIconForPage(page) {
     let pageIcon = '#';
 
-    //try to get the image
+    // try to get the image
     pageIcon = require(`../content/icons/${page.parentMenu.slug}/${
       page.slug
     }.png`);
@@ -246,6 +243,8 @@ class ContentPage extends Component {
 
 ContentPage.PropTypes = {
   data: PropTypes.object.isRequired,
+  location: PropTypes.any,
+  history: PropTypes.any,
 };
 
 export default withRouter(ContentPage);
