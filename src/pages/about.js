@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import decodeUrlString from '../utils/search-query';
-
-import beccahImage from '../content/beccah.jpg';
-import taruniImage from '../content/taruni.jpg';
-import hannahImage from '../content/hannah.jpg';
-import aileenImage from '../content/aileen.jpg';
+import beccahImage from '../content/about/beccah.jpg';
+import taruniImage from '../content/about/taruni.jpg';
+import hannahImage from '../content/about/hannah.jpg';
+import aileenImage from '../content/about/aileen.jpg';
 
 const AboutPage = props => {
   const language = decodeUrlString(props.location.search).lang;
