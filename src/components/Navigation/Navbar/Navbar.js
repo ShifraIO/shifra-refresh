@@ -198,7 +198,7 @@ class Navbar extends Component {
         role="navigation"
         aria-label="main navigation"
       >
-        <NavbarBrand logo={logo} to={`${this.state.search}`}>
+        <NavbarBrand logo={logo} to={`/${this.props.history.location.search}`}>
           <NavbarHamburger
             isOpen={this.state.isMenuOpen}
             clickEvent={this.toggleMenu}
