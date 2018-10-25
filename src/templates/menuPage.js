@@ -22,6 +22,9 @@ class MenuPage extends Component {
     this.pageItemToCard = this.pageItemToCard.bind(this);
     this.getIconForPage = this.getIconForPage.bind(this);
     this.getThemeName = this.getThemeName.bind(this);
+    this.updateLanguageState = this.updateLanguageState.bind(this);
+
+    this.updateLanguageState(props);
   }
 
   componentWillMount() {
@@ -33,6 +36,10 @@ class MenuPage extends Component {
   }
 
   componentWillReceiveProps(props) {
+    this.updateLanguageState(props);
+  }
+
+  updateLanguageState(props) {
     this.setState(
       Object.assign(this.state, {
         language: decodeUrlString(props.history.location.search).lang,
