@@ -26,7 +26,7 @@ module.exports = {
         // Any additional create only fields (optional)
         sampleRate: 5,
         siteSpeedSampleRate: 10,
-        cookieDomain: 'example.com',
+        cookieDomain: 'https://www.shifra.io/',
       },
     },
     {
