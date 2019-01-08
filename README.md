@@ -2,7 +2,7 @@
 
 This is a project which has been forked off the minimal Gatsby starter which includes Bulma and Storybook. It leverages the Gatsby Contentful plugin to pull in the site content. Styling is done primarily with scss.
 
-## Features
+## Features 
 
 * Storybook
 * Bulma (with font-awesome icons)
