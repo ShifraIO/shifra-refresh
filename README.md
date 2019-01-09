@@ -11,6 +11,8 @@ This is a project which has been forked off the minimal Gatsby starter which inc
 * ESLint
 * Jest
 
+
+
 ## Install
 
 Clone the repository and install dependencies
