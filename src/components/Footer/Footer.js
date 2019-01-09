@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './footer.scss';
 import { withRouter } from 'react-router';
+import logo from '../../content/shifra-logo.png';
 
 class Footer extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className="footer">
-        <div className="content has-text-centered">
+        <div className="content has-text-centered top">
           <div>
             <a className="footerLink" href={'tel:000'}>
               <i className="fas fa-phone" /> In case of emergency call 000
@@ -53,71 +54,84 @@ class Footer extends Component {
             </a>
           </div>
         </div>
-        <div className="content has-text-centered">
-          <div className="importantLinks">
-            <a className="footerLink" href={`/privacy${this.props.history.location.search}`}>
-              Privacy Policy
-            </a>
-            <div className="separatorCircle">
-              <i className="fas fa-circle" />
-            </div>
-            <a className="footerLink" href={`/termsofuse${this.props.history.location.search}`}>
-              Terms of Use
-            </a>
-            <div className="separatorCircle">
-              <i className="fas fa-circle" />
-            </div>
-            <a className="footerLink" href={`/about${this.props.history.location.search}`}>
-              About
-            </a>
-            <div className="separatorCircle">
-              <i className="fas fa-circle" />
-            </div>
-            <a className="footerLink" href={'mailto:info@shifra.io'}>
-              Contact
-            </a>
-          </div>
-          <div>
-            <a
-              className="footerLink socialIconLink"
-              href={'https://www.facebook.com/Shifra-1777571399195093/'}
-            >
-              <i className="fab fa-facebook-f" />
-            </a>
-            <a
-              className="footerLink socialIconLink"
-              href={'https://www.instagram.com/Shifra_au/'}
-            >
-              <i className="fab fa-instagram" />
-            </a>
-          </div>
-          <div>
-            <a className="footerLink" href={'https://www.nfaw.org/donations'}>
-              Donate Now
-            </a>
-          </div>
-          <div className="section has-text-centered">
-            <div className="columns">
-              <div className="column is-2">
+        <div className="content has-text-centered middle">
+        <ul className="halves clearfix">
+          <li>
+            <ul className="clearfix">
+              <li>
+                <img src = {logo}/>
+                <div>
+                  <a
+                    className="footerLink socialIconLink"
+                    href={'https://www.facebook.com/Shifra-1777571399195093/'}
+                  >
+                    <i className="fab fa-facebook-f" />
+                  </a>
+                  <a
+                    className="footerLink socialIconLink"
+                    href={'https://www.instagram.com/Shifra_au/'}
+                  >
+                    <i className="fab fa-instagram" />
+                  </a>
+                </div>
+              </li>
+              <li>
+                <ul className="clearfix">
+                  <li>
+                    <a className="footerLink" href={`/about${this.props.history.location.search}`}>
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a className="footerLink" href={'mailto:info@shifra.io'}>
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <ul className="clearfix">
+                  <li>
+                    <a className="footerLink" href={`/privacy${this.props.history.location.search}`}>
+                      Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a className="footerLink" href={`/termsofuse${this.props.history.location.search}`}>
+                      Terms of Use
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <ul className="logos clearfix">
+              <li>
                 <img
-                  src={this.getIconForLogo('swinburne')}
-                  alt="Swinburne Logo"
-                />
-              </div>
-              <div className="column is-2">
+                  src={this.getIconForLogo('swinburne')} alt="Swinburne Logo"/>
+              </li>
+              <li>
                 <img src={this.getIconForLogo('ygap')} alt="YGAP Logo" />
-              </div>
-              <div className="column is-2">
+              </li>
+              <li>
                 <img src={this.getIconForLogo('monash')} alt="Monash Logo" />
-              </div>
-              <div className="column">
-                <img
-                  src={this.getIconForLogo('gcgmonash')}
-                  alt="Global Consulting Group Logo"
-                />
-              </div>
-            </div>
-          </div>
+              </li>
+              <li>
+                <img src={this.getIconForLogo('gcgmonash')} alt="Global Consulting Group Logo" />
+              </li>
+              <li>
+                <img src={this.getIconForLogo('sylaba')} alt="Sylaba Logo" />
+              </li>
+              <li>
+                <img src={this.getIconForLogo('minter')} alt="Minter Ellison Logo" />
+              </li>
+              <li>
+                <img src={this.getIconForLogo('yc')} alt="YC Logo" />
+              </li>
+            </ul>
+          </li>
+        </ul>
         </div>
         <div className="disclaimer">
           <p>© 2017 Shifra. All rights reserved.</p>
@@ -128,7 +142,7 @@ class Footer extends Component {
             medical or legal advice in relation to individual circumstances.
             Shifra accepts no responsibility or legal liability for reliance on
             the information contained on this site, or other sites to which this
-            site links.
+            site links. De-identified data obtained from this website may be used by Shifra for research purposes.
           </p>
         </div>
       </footer>
