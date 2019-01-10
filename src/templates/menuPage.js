@@ -17,13 +17,6 @@ class MenuPage extends Component {
       defaultLanguage: 'en',
     };
 
-    this.mapPageListDataToElem = this.mapPageListDataToElem.bind(this);
-    this.getCardTitleForLanguage = this.getCardTitleForLanguage.bind(this);
-    this.pageItemToCard = this.pageItemToCard.bind(this);
-    this.getIconForPage = this.getIconForPage.bind(this);
-    this.getThemeName = this.getThemeName.bind(this);
-    this.updateLanguageState = this.updateLanguageState.bind(this);
-
     this.updateLanguageState(props);
   }
 
@@ -39,7 +32,7 @@ class MenuPage extends Component {
     this.updateLanguageState(props);
   }
 
-  updateLanguageState(props) {
+  updateLanguageState = props => {
     this.setState(
       Object.assign(this.state, {
         language: decodeUrlString(props.history.location.search).lang,
@@ -48,13 +41,13 @@ class MenuPage extends Component {
   }
 
   //get the theme classname postfix from the menu slug
-  getThemeName() {
+  getThemeName = _ => {
     let endIdx = this.props.data.contentfulMenuItem.slug.indexOf('-');
     return this.props.data.contentfulMenuItem.slug.substr(0, endIdx);
   }
 
   //given a titlelist, return the title in chosen language, else default to en
-  getCardTitleForLanguage(titleList, language) {
+  getCardTitleForLanguage = (titleList, language) => {
     let chosenTitle = null;
     titleList.forEach(title => {
       if (title.language.code === language) chosenTitle = title.titleText;
@@ -69,7 +62,7 @@ class MenuPage extends Component {
   }
 
   //using the page list, create the grid of cards
-  mapPageListDataToElem() {
+  mapPageListDataToElem = () => {
     let row = [],
       pageListGrid = [],
       max = this.state.pageList.length,
@@ -87,9 +80,9 @@ class MenuPage extends Component {
       }
 
       pageListGrid.push(
-        <div className="columns">
+        <div className="columns" key={i}>
           {row.map((col, idx) => {
-            return <div className="column">{col}</div>;
+            return <div key={idx} className="column">{col}</div>;
           })}
         </div>
       );
@@ -99,7 +92,7 @@ class MenuPage extends Component {
   }
 
   //generate a card from a page
-  pageItemToCard(page) {
+  pageItemToCard = page => {
     const url = `/${this.state.menuSlug}/${page.slug}${
       this.props.history.location.search
       }`;
@@ -126,7 +119,7 @@ class MenuPage extends Component {
   }
 
   //given a page and menu title, load the relevent icon
-  getIconForPage(page) {
+  getIconForPage = page => {
     let pageIcon = '#';
 
     //try to get the image

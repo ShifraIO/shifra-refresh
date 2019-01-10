@@ -9,28 +9,14 @@ import NavbarDropdown from '../NavbarDropdown';
 import NavbarItem from '../NavbarItem';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import './navbar.scss'
 
 function mapMenuToState(menuData) {
   return menuData.edges.map(data => data.node);
 }
 
 class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-
-    this.toggleMenu = this.toggleMenu.bind(this);
-    this.mapMenuToNavbar = this.mapMenuToNavbar.bind(this);
-    this.mapPageListToDropdown = this.mapPageListToDropdown.bind(this);
-    this.getMenuTextForLanguage = this.getMenuTextForLanguage.bind(this);
-    this.getPageTitleForLanguage = this.getPageTitleForLanguage.bind(this);
-    this.isContentAvaliableInLanguage = this.isContentAvaliableInLanguage.bind(
-      this
-    );
-    this.getTheme = this.getTheme.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
-    this.getRouteWithLanguage = this.getRouteWithLanguage.bind(this);
-  }
+  state = {}
 
   componentWillMount() {
     this.setState({
@@ -52,23 +38,23 @@ class Navbar extends Component {
     );
   }
 
-  getRouteWithLanguage(language) {
+  getRouteWithLanguage = language => {
     return language
       ? `${this.props.location.pathname}?lang=${language}`
       : this.props.location.pathname;
   }
 
-  toggleMenu() {
+  toggleMenu = _ => {
     this.setState(prevState => {
       return { isMenuOpen: !prevState.isMenuOpen };
     });
   }
 
-  closeMenu() {
+  closeMenu = _ => {
     this.state.isMenuOpen = false;
   }
 
-  isContentAvaliableInLanguage(contentArray, language) {
+  isContentAvaliableInLanguage = (contentArray, language) => {
     // For each element in content array
     // Does have language 'language'?
     // if yes, return true
@@ -83,7 +69,7 @@ class Navbar extends Component {
   }
 
   // Need to handle english by default.
-  getMenuTextForLanguage(menuItem, language) {
+  getMenuTextForLanguage = (menuItem, language) => {
     const contentlanguage = this.isContentAvaliableInLanguage(
       menuItem.menuItemTextList,
       language
@@ -99,7 +85,7 @@ class Navbar extends Component {
   }
 
   // Need to handle english by default.
-  getPageTitleForLanguage(pageItem, language) {
+  getPageTitleForLanguage = (pageItem, language) => {
     const contentlanguage = this.isContentAvaliableInLanguage(
       pageItem.titleList,
       language
@@ -114,7 +100,7 @@ class Navbar extends Component {
     );
   }
 
-  mapMenuToNavbar(menuList) {
+  mapMenuToNavbar = (menuList) => {
     return menuList.map((menuItem, index) => {
       return (
         <NavbarDropdown
@@ -129,7 +115,7 @@ class Navbar extends Component {
     });
   }
 
-  mapPageListToDropdown(pageList, menuSlug) {
+  mapPageListToDropdown = (pageList, menuSlug) => {
     return pageList.map((page, index) => {
       const title = this.getPageTitleForLanguage(page, this.state.language);
       const url = `/${menuSlug}/${page.slug}`;
@@ -145,7 +131,7 @@ class Navbar extends Component {
     });
   }
 
-  getTheme() {
+  getTheme = _ => {
     switch (this.state.theme) {
       case 'healthcare-australia':
         return 'healthcare';
@@ -194,7 +180,7 @@ class Navbar extends Component {
 
     return (
       <nav
-        className={`navbar is-fixed-top is-${this.getTheme()}`}
+        className={`navbar is-fixed-top is-${this.getTheme()} language-${this.props.language}`}
         role="navigation"
         aria-label="main navigation"
       >
