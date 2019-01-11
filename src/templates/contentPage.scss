@@ -55,3 +55,17 @@ $minButtonWidth: 215px;
 .button-empty {
   border-color: #fff;
 }
+
+.section.content.ar {
+  ul {
+    margin-left: 0px;
+    margin-right: 2em;
+  }
+}
+
+.columns.ar {
+  .button {
+    height: auto;
+    padding-bottom: 1em;
+  }
+}

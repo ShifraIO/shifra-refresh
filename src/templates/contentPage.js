@@ -235,7 +235,7 @@ class ContentPage extends Component {
             )
           )}
         />
-        <div className="columns">{this.mapPageListDataToElem()}</div>
+        <div className={"columns "+this.state.language}>{this.mapPageListDataToElem()}</div>
       </div>
     );
   }
