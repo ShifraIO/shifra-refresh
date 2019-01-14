@@ -5,13 +5,38 @@
   padding-top: 0;
 }
 
+.clearfix {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.button-title-text {
+  max-height: 100%;
+}
+
 @media screen and (max-width: 760px) {
-  .content-stretch-fix {
-    margin: 0 auto;
-    max-width: 100%;
-    padding: 0px 1px 1.45rem;
-    padding-top: 0;
-    overflow-x: hidden;
+  body, html {
+    table, tbody, td, tr { 
+      display: block; 
+    }
+    table thead { 
+      display: none;
+    }
+    footer .content .logos li {
+      width: 50%;
+    }
+    iframe {
+      width: 100% !important;
+    }
+
+    .content-stretch-fix {
+      margin: 0 auto;
+      max-width: 100%;
+      padding: 0px 1px 1.45rem;
+      padding-top: 0;
+      overflow-x: hidden;
+    }
   }
 }
 
@@ -25,8 +50,6 @@
   }
 }
 
-
-@charset "utf-8";
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
 $white: #fff;

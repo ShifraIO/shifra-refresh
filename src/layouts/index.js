@@ -48,6 +48,21 @@ class TemplateWrapper extends Component {
             { name: 'description', content: 'Sample' },
             { name: 'keywords', content: 'sample, something' },
           ]}
+          link={[
+            {
+              rel: 'shortcut icon',
+              href: '/static/favicon.png',
+              type: 'image/x-icon'
+            },{
+              rel: 'icon',
+              href: '/static/favicon.png',
+              type: 'image/x-icon'
+            },{
+              rel: 'stylesheet',
+              type: 'text/css',
+              href: 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css'
+            }
+          ]}
         />
         <Header
           allContentfulMenuItem={this.props.data.allContentfulMenuItem}

@@ -226,7 +226,7 @@ class ContentPage extends Component {
       <div>
         <div
           dir={this.getFontDirection(this.state.language)}
-          className="section content"
+          className={"section content "+this.state.language}
           dangerouslySetInnerHTML={this.buildPageHTML(
             this.getContentForLanguage(
               this.props.data.contentfulPage.contentList,
@@ -235,7 +235,7 @@ class ContentPage extends Component {
             )
           )}
         />
-        <div className="columns">{this.mapPageListDataToElem()}</div>
+        <div className={"columns "+this.state.language}>{this.mapPageListDataToElem()}</div>
       </div>
     );
   }
