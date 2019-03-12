@@ -10,11 +10,25 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-google-tagmanager`,
+      options: {
+        id: "UA-105402728-1",
+  
+        // Include GTM in development.
+        // Defaults to false meaning GTM will only be loaded in production.
+        includeInDevelopment: true
+  
+        // Specify optional GTM environment details.
+        /*gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_AUTH_STRING",
+        gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_PREVIEW_NAME",*/
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID || '',
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'UA-105402728-1',
         // Puts tracking script in the head instead of the body
-        head: false,
+        head: true,
         // Setting this parameter is optional
         anonymize: true,
         // Setting this parameter is also optional
