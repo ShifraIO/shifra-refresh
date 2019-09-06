@@ -21,6 +21,13 @@ module.exports = class HTML extends React.Component {
         />
       );
     }
+
+    console.log('test')
+
+    if(typeof window !== 'undefined'){
+      window.location.href = 'https://shifra.app'
+    }
+
     return (
       <html className="has-navbar-fixed-top" {...this.props.htmlAttributes}>
         <head>
