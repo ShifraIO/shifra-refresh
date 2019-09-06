@@ -186,7 +186,7 @@ class Navbar extends Component {
 
     return (
       <nav
-        className={`navbar is-fixed-top is-${this.getTheme()} language-${this.props.language}`}
+        className={`navbar test test test is-fixed-top is-${this.getTheme()} language-${this.props.language}`}
         role="navigation"
         aria-label="main navigation"
       >
