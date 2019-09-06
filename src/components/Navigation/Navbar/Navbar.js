@@ -178,6 +178,12 @@ class Navbar extends Component {
       },
     };
 
+    console.log('test2')
+
+    if(typeof window !== 'undefined'){
+      window.location.href = 'https://shifra.app'
+    }
+
     return (
       <nav
         className={`navbar is-fixed-top is-${this.getTheme()} language-${this.props.language}`}
